@@ -190,6 +190,7 @@ header {
   flex-direction: column;
 
   .items {
+    flex:1; //15249
     overflow: auto;
     margin-bottom: 40px;
   }
