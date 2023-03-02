@@ -1,15 +1,15 @@
-function Card() {
+function Card(props) {
   return (
     <div className="card">
       <div className="favorite">
         <img src="/img/heart-unliked.svg" alt="Unliked" />
       </div>
-      <img width={133} height={112} src="/img/sneakers/1.jpg" alt="Sneakers" />
-      <h5>Мужские кроссовки Nike Blazer Mid Suede</h5>
+      <img width={133} height={112} src={props.imageUrl} alt="Sneakers" />
+      <h5>{props.title}</h5>
       <div className="cardBottom">
         <div className="cardBottom2">
           <span>Цена:</span>
-          <b>12 999.</b>
+          <b>{props.price}</b>
         </div>
         <button className="button">
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
