@@ -31,6 +31,7 @@ function App() {
               title={obj.title} //title is from Card.js 
               // (title, price, imageUrl becomes props in App(props)), 
               // obj.title is from arr.
+              // !!! means ~ Card.tittle == obj.title -> Card == object == props, BINGO
               price={obj.price}
               imageUrl={obj.imageUrl}
             />
