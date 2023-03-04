@@ -1,3 +1,4 @@
+import React from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -10,11 +11,17 @@ const arr = [
 ];
 
 function App() {
+
+  const [CartOpened, setCartOpened] = React.useState(false);
+
   return (
     <div className="wrapper">
 
-      <Drawer />
-      <Header />
+      {CartOpened && <Drawer onClose={() => setCartOpened(false)} />}
+      {/* {CartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null} - same, but longer*/}
+
+
+      <Header onClickCart={() => setCartOpened(true)} />
 
       <div className="content">
         <div className="contentNameNsearchPos">

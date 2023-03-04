@@ -73,6 +73,7 @@ header {
 
   .cartIconPrice {
     margin-right: 30px;
+    cursor: pointer;
 
     span {
       margin-left: 10px; //моя догадка
@@ -146,7 +147,7 @@ header {
   flex-direction: column;
 
   .items {
-    flex:1; //15249
+    flex: 1; //15249
     overflow: auto;
     margin-bottom: 40px;
   }
