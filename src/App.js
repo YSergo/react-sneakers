@@ -5,7 +5,8 @@ import Drawer from './components/Drawer'
 
 function App() {
   const [items, setItems] = React.useState([]); //for back
-  const [CartOpened, setCartOpened] = React.useState(false);
+  const [cartItems, setCartItems] = React.useState([]);
+  const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
     fetch('https://6403a93d80d9c5c7bab98673.mockapi.io/items')
@@ -18,11 +19,16 @@ function App() {
   }, []);
   //подсосал данные с бэка, но нихуя не понял. Надо почитать про промисы
 
+  const onAddToCart = (obj) => {
+    setCartItems(prev => [...prev, obj]);
+  }
+  //HOMEWORK: add checking for an existing item, add opportunity to delete item from cart
+
   return (
     <div className="wrapper">
 
-      {CartOpened && <Drawer onClose={() => setCartOpened(false)} />}
-      {/* {CartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null} - same, but longer*/}
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+      {/* {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null} - same, but longer*/}
 
 
       <Header onClickCart={() => setCartOpened(true)} />
@@ -37,14 +43,16 @@ function App() {
         </div>
         <div className="sneakers">
 
-          {items.map(obj =>
+          {items.map(item =>
             <Card
-              title={obj.title} //title is from Card.js 
+              title={item.title} //title is from Card.js 
               // (title, price, imageUrl becomes props in App(props)), 
-              // obj.title is from arr.
-              // !!! means ~ Card.tittle == obj.title -> Card == object == props, BINGO
-              price={obj.price}
-              imageUrl={obj.imageUrl}
+              // item.title is from arr.
+              // !!! means ~ Card.tittle == item.title -> Card == object == props, BINGO
+              price={item.price}
+              imageUrl={item.imageUrl}
+              onPlus={(obj) => onAddToCart(obj)}
+              onFavorite={() => console.log(228)}
             />
           )}
 

@@ -1,38 +1,21 @@
-function Drawer(props) {
-  console.log(props)
+function Drawer({onClose, items = []}) {
   return (
     <div className="overlay">
       <div className="drawer">
-        <h2>Корзина <img onClick={props.onClose} className="removeBtn" src="/img/btn-remove.svg" alt="Close" /></h2>
+        <h2>Корзина <img onClick={onClose} className="removeBtn" src="/img/btn-remove.svg" alt="Close" /></h2>
 
         <div className="items">
 
-          <div className="cartItem">
-            <div style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }} className="cartItemImg"></div>
-            <div className="textInCartItem">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
+          {items.map(obj => (
+            <div className="cartItem">
+              <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className="cartItemImg"></div>
+              <div className="textInCartItem">
+                <p>{obj.title}</p>
+                <b>{obj.price}</b>
+              </div>
+              <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
             </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-          </div>
-
-          <div className="cartItem">
-            <div style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }} className="cartItemImg"></div>
-            <div className="textInCartItem">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-          </div>
-
-          <div className="cartItem">
-            <div style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }} className="cartItemImg"></div>
-            <div className="textInCartItem">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-          </div>
+          ))}
 
         </div>
         <div className="cartTotalBlock">
