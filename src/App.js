@@ -17,17 +17,24 @@ function App() {
         setItems(json);
       });
   }, []);
-  //подсосал данные с бэка, но нихуя не понял. Надо почитать про промисы
+  //подсосал данные с бэка, но нихуя не понял. Надо почитать про промисы. Did it)00
 
   const onAddToCart = (obj) => {
-    setCartItems(prev => [...prev, obj]);
+    if (!(cartItems.map(krosi => krosi.title).includes(obj.title) && cartItems.map(krosi => krosi.price).includes(obj.price))) {
+      setCartItems(prev => [...prev, obj]);
+      //or using method array.some() if (!cartItems.some(krosi => krosi.title === obj.title && krosi.price === obj.price)) setCartItems(prev => [...prev, obj]);
+    }
   }
-  //HOMEWORK: add checking for an existing item, add opportunity to delete item from cart
+
+  const onRemoveFromCart = (obj) => {
+    setCartItems(prev => prev.filter(item => item.price !== obj.price || item.title !== obj.title))
+  }
+  //HOMEWORK: add checking for an existing item (DONE, GPT <3), add opportunity to delete item from cart (DONE, OMG THIS OBJECT TRANSIST AND onClick={() => xyu(obj)} to do it)
 
   return (
     <div className="wrapper">
 
-      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+      {cartOpened && <Drawer onRemove={onRemoveFromCart} items={cartItems} onClose={() => setCartOpened(false)} />}
       {/* {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null} - same, but longer*/}
 
 
