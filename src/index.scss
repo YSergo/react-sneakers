@@ -92,6 +92,7 @@ header {
 
     h1 {
       margin: 0;
+      overflow:auto; //my fix for flying search-block
     }
   }
 }
@@ -117,6 +118,17 @@ header {
   border-radius: 10px;
   padding: 0px 15px;
   display: flex;
+  position: relative;
+  
+  .clear-btn {
+    right: 0;
+    cursor: pointer;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 14px;
+    right: 15px;
+  }
 
   input {
     border: 0;

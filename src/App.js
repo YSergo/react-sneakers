@@ -7,6 +7,7 @@ function App() {
   const [items, setItems] = React.useState([]); //for back
   const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(() => {
     fetch('https://6403a93d80d9c5c7bab98673.mockapi.io/items')
@@ -27,7 +28,7 @@ function App() {
   }
 
   const onRemoveFromCart = (obj) => {
-    setCartItems(prev => prev.filter(item => item.price !== obj.price || item.title !== obj.title))
+    setCartItems(prev => prev.filter(item => item.price !== obj.price || item.title !== obj.title));
   }
   //HOMEWORK: add checking for an existing item (DONE, GPT <3), add opportunity to delete item from cart (DONE, OMG THIS OBJECT TRANSIST AND onClick={() => xyu(obj)} to do it)
 
@@ -42,26 +43,30 @@ function App() {
 
       <div className="content">
         <div className="contentNameNsearchPos">
-          <h1>Все кроссовки</h1>
+          <h1>{searchValue ? `Поиск по запросу: ${searchValue}` : 'Все кроссовки'}</h1>
           <div className="search-block">
             <img src="/img/search.svg" alt="Search" />
-            <input placeholder="Поиск..." />
+            {searchValue && <img onClick={() => setSearchValue('')} className="clear-btn" src="/img/btn-remove.svg" alt="Clear" />}
+            <input onChange={(event) => setSearchValue(event.target.value)} value={searchValue} placeholder="Поиск..." />
           </div>
         </div>
         <div className="sneakers">
 
-          {items.map(item =>
-            <Card
-              title={item.title} //title is from Card.js 
-              // (title, price, imageUrl becomes props in App(props)), 
-              // item.title is from arr.
-              // !!! means ~ Card.tittle == item.title -> Card == object == props, BINGO
-              price={item.price}
-              imageUrl={item.imageUrl}
-              onPlus={(obj) => onAddToCart(obj)}
-              onFavorite={() => console.log(228)}
-            />
-          )}
+          {items
+            .filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+            .map((item, index) =>
+              <Card
+                key={index}
+                title={item.title} //title is from Card.js 
+                // (title, price, imageUrl becomes props in App(props)), 
+                // item.title is from arr.
+                // !!! means ~ Card.tittle == item.title -> Card == object == props, BINGO
+                price={item.price}
+                imageUrl={item.imageUrl}
+                onPlus={(obj) => onAddToCart(obj)}
+                onFavorite={() => console.log(228)}
+              />
+            )}
 
         </div>
 
