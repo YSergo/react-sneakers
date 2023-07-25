@@ -7,6 +7,7 @@ import Drawer from './components/Drawer'
 function App() {
   const [items, setItems] = React.useState([]); //for back
   const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -43,6 +44,11 @@ function App() {
   }
   //HOMEWORK: add checking for an existing item (DONE, GPT <3), add opportunity to delete item from cart (DONE, OMG THIS OBJECT TRANSIST AND onClick={() => xyu(obj)} to do it)
   
+  const onAddToFavorite = (obj) => {
+    axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/favorites', obj);
+    setFavorites(prev => [...prev, obj]);
+  }
+
   return (
     <div className="wrapper">
 
@@ -75,7 +81,7 @@ function App() {
                 price={item.price}
                 imageUrl={item.imageUrl}
                 onPlus={(obj) => onAddToCart(obj)}
-                onFavorite={() => console.log(228)}
+                onFavorite={(obj) => onAddToFavorite(obj)}
               />
             )}
 
