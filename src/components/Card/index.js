@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Card.module.scss";
 
-function Card({ title, price, imageUrl, onFavorite, onPlus }) {
+function Card({ id, title, price, imageUrl, onFavorite, onPlus, favorited = false }) {
   const [isAdded, setIsAdded] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(favorited);
   //false goes in isAdded, setIsAdded - f, analog render() mb & afaik
 
   const onClickPlus = () => {
@@ -12,7 +12,7 @@ function Card({ title, price, imageUrl, onFavorite, onPlus }) {
   };
 
   const onClickFavorite = () => {
-    onFavorite({ title, price, imageUrl });
+    onFavorite({ id ,title, price, imageUrl });
     setIsFavorite(!isFavorite);
   }
   //with click changing value of isAdded (here we are inversing)
