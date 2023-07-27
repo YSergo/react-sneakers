@@ -56,13 +56,20 @@ function App() {
   //HOMEWORK: add checking for an existing item (DONE, GPT <3), add opportunity to delete item from cart (DONE, OMG THIS OBJECT TRANSIST AND onClick={() => xyu(obj)} to do it)
 
   const onAddToFavorite = async (obj) => {
-    if (favorites.find((favObj) => favObj.id === obj.id)) {
-      axios.delete(
-        `https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${obj.id}`
-      );
-    } else {
-      const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/favorites', obj);
-      setFavorites((prev) => [...prev, data]);
+    try {
+      if (favorites.find((favObj) => favObj.id === obj.id)) {
+        axios.delete(
+          `https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${obj.id}`
+        );
+      } else {
+        const { data } = await axios.post(
+          'https://641a29baf398d7d95d51f32d.mockapi.io/favorites',
+          obj
+        );
+        setFavorites((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      alert('Не удалось добавить в фавориты'); 
     }
   };
 
