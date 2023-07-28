@@ -2,6 +2,7 @@ import Card from '../components/Card';
 
 function Home({
   items,
+  cartItems,
   searchValue,
   setSearchValue,
   onAddToFavorite,
@@ -43,9 +44,11 @@ function Home({
               // item.title is from arr.
               // !!! means ~ Card.tittle == item.title -> Card == object == props, BINGO
               price={item.price}
+              id={item.id}
               imageUrl={item.imageUrl}
               onPlus={(obj) => onAddToCart(obj)}
               onFavorite={(obj) => onAddToFavorite(obj)}
+              added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
             />
           ))}
       </div>

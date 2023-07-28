@@ -14,35 +14,58 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(() => {
-    // fetch vs axios.
-    // fetch:
-    // fetch('https://6403a93d80d9c5c7bab98673.mockapi.io/items')
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((json) => {
-    //     setItems(json);
-    //   });
-    //axios:
-    axios
-      .get('https://6403a93d80d9c5c7bab98673.mockapi.io/items')
-      .then((res) => setItems(res.data));
-    axios
-      .get('https://6403a93d80d9c5c7bab98673.mockapi.io/cart')
-      .then((res) => setCartItems(res.data));
-    axios
-      .get('https://641a29baf398d7d95d51f32d.mockapi.io/favorites')
-      .then((res) => setFavorites(res.data));
+    async function fetchData() {
+      const cartItemsResponse = await axios.get(
+        'https://6403a93d80d9c5c7bab98673.mockapi.io/cart'
+      );
+      const favoritesResponse = await axios.get(
+        'https://641a29baf398d7d95d51f32d.mockapi.io/favorites'
+      );
+      const itemsResponse = await axios.get(
+        'https://6403a93d80d9c5c7bab98673.mockapi.io/items'
+      );
+      setCartItems(cartItemsResponse.data);
+      setFavorites(favoritesResponse.data);
+      setItems(itemsResponse.data);
+    }
+    fetchData();
   }, []);
+  //выше - как надо. Хотя еще и трай кетч должен быть...
+  // fetch vs axios.
+  // fetch:
+  // fetch('https://6403a93d80d9c5c7bab98673.mockapi.io/items')
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((json) => {
+  //     setItems(json);
+  //   });
+  //axios:
+  //   axios
+  //     .get('https://6403a93d80d9c5c7bab98673.mockapi.io/items')
+  //     .then((res) => setItems(res.data));
+  //   axios
+  //     .get('https://6403a93d80d9c5c7bab98673.mockapi.io/cart')
+  //     .then((res) => setCartItems(res.data));
+  //   axios
+  //     .get('https://641a29baf398d7d95d51f32d.mockapi.io/favorites')
+  //     .then((res) => setFavorites(res.data));
+  // }, []);
   //подсосал данные с бэка, но нихуя не понял. Надо почитать про промисы. Did it)00
 
   const onAddToCart = (obj) => {
-    if (
-      !(
-        cartItems.map((krosi) => krosi.title).includes(obj.title) &&
-        cartItems.map((krosi) => krosi.price).includes(obj.price)
-      )
-    ) {
+    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+      axios.delete(
+        `https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${obj.id}`
+      );
+      setCartItems((prev) =>
+        prev.filter((item) => Number(item.id) !== Number(obj.id))
+      );
+      // !(
+      //   cartItems.map((krosi) => krosi.title).includes(obj.title) &&
+      //   cartItems.map((krosi) => krosi.price).includes(obj.price)
+      // ) - старый способ
+    } else {
       axios.post('https://6403a93d80d9c5c7bab98673.mockapi.io/cart', obj);
       setCartItems((prev) => [...prev, obj]);
       //or using method array.some() if (!cartItems.some(krosi => krosi.title === obj.title && krosi.price === obj.price)) setCartItems(prev => [...prev, obj]);
@@ -91,6 +114,7 @@ function App() {
           element={
             <Home
               items={items}
+              cartItems={cartItems}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               onAddToFavorite={onAddToFavorite}

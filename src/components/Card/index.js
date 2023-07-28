@@ -9,13 +9,14 @@ function Card({
   onFavorite,
   onPlus,
   favorited = false,
+  added = false
 }) {
-  const [isAdded, setIsAdded] = React.useState(false);
+  const [isAdded, setIsAdded] = React.useState(added);
   const [isFavorite, setIsFavorite] = React.useState(favorited);
   //false goes in isAdded, setIsAdded - f, analog render() mb & afaik
 
   const onClickPlus = () => {
-    onPlus({ title, price, imageUrl });
+    onPlus({ id, title, price, imageUrl });
     setIsAdded(!isAdded);
   };
 
