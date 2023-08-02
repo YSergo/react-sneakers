@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Card.module.scss';
 import ContentLoader from 'react-content-loader';
+import { appContext } from '../../App';
 
 function Card({
   id,
@@ -10,27 +11,20 @@ function Card({
   onFavorite,
   onPlus,
   favorited = false,
-  added = false,
-  loading,
+  loading = false,
 }) {
-  const [isAdded, setIsAdded] = React.useState(added);
+
+  const { isItemAdded } = React.useContext(appContext);
   const [isFavorite, setIsFavorite] = React.useState(favorited);
-  //false goes in isAdded, setIsAdded - f, analog render() mb & afaik
 
   const onClickPlus = () => {
     onPlus({ id, title, price, imageUrl });
-    setIsAdded(!isAdded);
   };
 
   const onClickFavorite = () => {
     onFavorite({ id, title, price, imageUrl });
     setIsFavorite(!isFavorite);
   };
-  //with click changing value of isAdded (here we are inversing)
-
-  React.useEffect(() => {
-    console.log('useEffect demonstration');
-  }, [isAdded]); //Demonstration of using hook useEffect();
 
   return (
     <div className={styles.card}>
@@ -67,7 +61,7 @@ function Card({
             <img
               className={styles.plus}
               onClick={onClickPlus}
-              src={isAdded ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
+              src={isItemAdded(id) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
               alt='Add'
             />
           </div>

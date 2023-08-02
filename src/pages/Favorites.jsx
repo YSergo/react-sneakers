@@ -1,12 +1,17 @@
 import Card from '../components/Card';
-function Favorites({ items, onAddToFavorite }) {
+import { appContext } from '../App';
+import react from 'react';
+
+function Favorites() {
+const { favorites, onAddToFavorite } = react.useContext(appContext);
+
   return (
     <div className='content'>
       <div className='contentNameNsearchPos'>
         <h1>Favorites</h1>
       </div>
       <div className='sneakers'>
-        {items.map((item, index) => (
+        {favorites.map((item, index) => (
           <Card
             key={index}
             title={item.title} //title is from Card.js
