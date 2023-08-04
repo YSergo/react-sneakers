@@ -1,6 +1,38 @@
+import React from 'react';
+import axios from 'axios';
 import Info from './Info';
+import { appContext } from '../App';
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({ onClose, items = [], onRemove }) {
+  const [isOrderComplete, setIsOrderComplete] = React.useState(false);
+  const [orderId, setOrderId] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { cartItems, setCartItems } = React.useContext(appContext);
+
+  const onClickOrder = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        'https://641a29baf398d7d95d51f32d.mockapi.io/orders',
+        { items: cartItems }
+      );
+      setOrderId(data.id);
+      setIsOrderComplete(true);
+      setCartItems([]);
+
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        await axios.delete('https://6403a93d80d9c5c7bab98673.mockapi.io/cart/' + item.id);
+        await delay(1000);
+      } //ebuchiy mockapi :(;
+     } catch {
+      alert('Ошибка при создании заказа :C');
+    }
+    setIsLoading(false);
+  };
+
   return (
     <div onClick={onClose} className='overlay'>
       <div onClick={(event) => event.stopPropagation()} className='drawer'>
@@ -52,25 +84,27 @@ function Drawer({ onClose, items = [], onRemove }) {
                   <b>1074 руб.</b>
                 </li>
               </ul>
-              <button className='greenButton'>
+              <button
+                disabled={isLoading}
+                onClick={onClickOrder}
+                className='greenButton'
+              >
                 Оформить заказ <img src='/img/arrow.svg' alt='Arrow' />
               </button>
             </div>
           </div>
         ) : (
           <Info
-            picture={
-              <img
-                className='mb-20'
-                width='120px'
-                height='120px'
-                src='/img/empty-cart.jpg'
-                alt='Empty'
-              />
+            image={
+              isOrderComplete
+                ? '/img/complete-order.png'
+                : '/img/empty-cart.jpg'
             }
-            title={'Корзина пустая'}
+            title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
             description={
-              'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+              isOrderComplete
+                ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
+                : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
           />
         )}
