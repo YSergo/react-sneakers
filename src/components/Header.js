@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
+import { appContext } from '../App';
+import React from 'react';
+
 function Header(props) {
+  const { cartItems } = React.useContext(appContext);
+  const totalPrice = cartItems.reduce((sum, obj) => sum + obj.price, 0);
+
   return (
     <header>
       <Link to='/'>
@@ -36,7 +42,7 @@ function Header(props) {
               strokeLinejoin='round'
             />
           </svg>
-          <span>1205 руб.</span>
+          <span>{totalPrice} руб.</span>
         </li>
         <Link to='/favorites'>
           <li className='likeIcon'>
