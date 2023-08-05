@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import Info from './Info';
-import { appContext } from '../App';
+
+import Info from '../Info';
+import { appContext } from '../../App';
+
+import styles from './Drawer.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer({ onClose, items = [], onRemove }) {
+function Drawer({ onClose, items = [], onRemove, opened }) {
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -35,17 +38,17 @@ function Drawer({ onClose, items = [], onRemove }) {
   };
 
   return (
-    <div onClick={onClose} className='overlay'>
-      <div onClick={(event) => event.stopPropagation()} className='drawer'>
+    <div onClick={onClose} className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div onClick={(event) => event.stopPropagation()} className={styles.drawer}>
         {/* onClick={(event) => event.stopPropagation()} - help by gpt, 
         we are missing onClose on this div now */}
         <h2>
-          Корзина <img onClick={onClose} className='removeBtn' src='/img/btn-remove.svg' alt='Close' />
+          Корзина <img onClick={onClose} className={styles.removeBtn} src='/img/btn-remove.svg' alt='Close' />
         </h2>
 
         {items.length > 0 ? (
-          <div className='itemsParent'>
-            <div className='items'>
+          <div className={styles.itemsParent}>
+            <div className={styles.items}>
               {items.map((obj) => (
                 <div key={obj.id} className='cartItem'>
                   <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className='cartItemImg'></div>

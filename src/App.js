@@ -19,38 +19,53 @@ function App() {
 
   React.useEffect(() => {
     async function fetchData() {
-      const cartItemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/cart');
-      const favoritesResponse = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/favorites');
-      const itemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/items');
+      try {
+        const cartItemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/cart');
+        const favoritesResponse = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/favorites');
+        const itemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/items');
 
-      setIsLoading(false);
+        setIsLoading(false);
 
-      setCartItems(cartItemsResponse.data);
-      setFavorites(favoritesResponse.data);
-      setItems(itemsResponse.data);
+        setCartItems(cartItemsResponse.data);
+        setFavorites(favoritesResponse.data);
+        setItems(itemsResponse.data);
+      } catch (error) {
+        alert('Ошибка при запросе данных ;(');
+        console.error(error);
+      }
     }
     fetchData();
   }, []);
 
-  const onAddToCart = (obj) => {
-    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-      axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${obj.id}`);
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
-      // !(
-      //   cartItems.map((krosi) => krosi.title).includes(obj.title) &&
-      //   cartItems.map((krosi) => krosi.price).includes(obj.price)
-      // ) - старый способ
-    } else {
-      axios.post('https://6403a93d80d9c5c7bab98673.mockapi.io/cart', obj);
-      setCartItems((prev) => [...prev, obj]);
-      //or using method array.some() if (!cartItems.some(krosi => krosi.title === obj.title && krosi.price === obj.price))
-      //setCartItems(prev => [...prev, obj]);
+  const onAddToCart = async (obj) => {
+    try {
+      if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+        await axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${obj.id}`);
+        // !(
+        //   cartItems.map((krosi) => krosi.title).includes(obj.title) &&
+        //   cartItems.map((krosi) => krosi.price).includes(obj.price)
+        // ) - старый способ
+      } else {
+        setCartItems((prev) => [...prev, obj]);
+        await axios.post('https://6403a93d80d9c5c7bab98673.mockapi.io/cart', obj);
+        //or using method array.some() if (!cartItems.some(krosi => krosi.title === obj.title && krosi.price === obj.price))
+        //setCartItems(prev => [...prev, obj]);
+      }
+    } catch (error) {
+      alert('Возникла ошибка при добавлении товаров в корзину');
+      console.error(error);
     }
   };
 
   const onRemoveItem = (id) => {
-    axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    try {
+      axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${id}`);
+      setCartItems((prev) => prev.filter((item) => item.id !== id));
+    } catch (error) {
+      alert('Возникла ошибка при удалении из корзины');
+      console.error(error);
+    }
   };
 
   const onAddToFavorite = async (obj) => {
@@ -63,7 +78,8 @@ function App() {
         setFavorites((prev) => [...prev, data]);
       }
     } catch (error) {
-      alert('Не удалось добавить в фавориты');
+      alert('Не удалось добавить в закладки');
+      console.error(error);
     }
   };
 
@@ -85,10 +101,12 @@ function App() {
       }}
     >
       <div className='wrapper'>
-        {cartOpened && (
-          <Drawer onRemove={onRemoveItem} items={cartItems} onClose={() => setCartOpened(false)} />
-        )}
-
+        <Drawer
+          onRemove={onRemoveItem}
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          opened={cartOpened}
+        />
         <Header onClickCart={() => setCartOpened(true)} />
         <Routes>
           <Route
