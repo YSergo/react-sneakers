@@ -14,10 +14,9 @@ function Drawer({ onClose, items = [], onRemove }) {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post(
-        'https://641a29baf398d7d95d51f32d.mockapi.io/orders',
-        { items: cartItems }
-      );
+      const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/orders', {
+        items: cartItems,
+      });
       setOrderId(data.id);
       setIsOrderComplete(true);
       setCartItems([]);
@@ -27,7 +26,7 @@ function Drawer({ onClose, items = [], onRemove }) {
         await axios.delete('https://6403a93d80d9c5c7bab98673.mockapi.io/cart/' + item.id);
         await delay(1000);
       } //ebuchiy mockapi :(;
-     } catch {
+    } catch {
       alert('Ошибка при создании заказа :C');
     }
     setIsLoading(false);
@@ -39,13 +38,7 @@ function Drawer({ onClose, items = [], onRemove }) {
         {/* onClick={(event) => event.stopPropagation()} - help by gpt, 
         we are missing onClose on this div now */}
         <h2>
-          Корзина{' '}
-          <img
-            onClick={onClose}
-            className='removeBtn'
-            src='/img/btn-remove.svg'
-            alt='Close'
-          />
+          Корзина <img onClick={onClose} className='removeBtn' src='/img/btn-remove.svg' alt='Close' />
         </h2>
 
         {items.length > 0 ? (
@@ -53,10 +46,7 @@ function Drawer({ onClose, items = [], onRemove }) {
             <div className='items'>
               {items.map((obj) => (
                 <div key={obj.id} className='cartItem'>
-                  <div
-                    style={{ backgroundImage: `url(${obj.imageUrl})` }}
-                    className='cartItemImg'
-                  ></div>
+                  <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className='cartItemImg'></div>
                   <div className='textInCartItem'>
                     <p>{obj.title}</p>
                     <b>{obj.price} руб.</b>
@@ -84,22 +74,14 @@ function Drawer({ onClose, items = [], onRemove }) {
                   <b>1074 руб.</b>
                 </li>
               </ul>
-              <button
-                disabled={isLoading}
-                onClick={onClickOrder}
-                className='greenButton'
-              >
+              <button disabled={isLoading} onClick={onClickOrder} className='greenButton'>
                 Оформить заказ <img src='/img/arrow.svg' alt='Arrow' />
               </button>
             </div>
           </div>
         ) : (
           <Info
-            image={
-              isOrderComplete
-                ? '/img/complete-order.png'
-                : '/img/empty-cart.jpg'
-            }
+            image={isOrderComplete ? '/img/complete-order.png' : '/img/empty-cart.jpg'}
             title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
             description={
               isOrderComplete

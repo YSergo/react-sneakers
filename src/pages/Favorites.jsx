@@ -3,7 +3,7 @@ import { appContext } from '../App';
 import react from 'react';
 
 function Favorites() {
-const { favorites, onAddToFavorite } = react.useContext(appContext);
+  const { favorites, onAddToFavorite } = react.useContext(appContext);
 
   return (
     <div className='content'>

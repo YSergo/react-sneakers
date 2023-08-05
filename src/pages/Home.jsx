@@ -1,35 +1,25 @@
 import Card from '../components/Card';
 
-function Home({
-  items,
-  searchValue,
-  setSearchValue,
-  onAddToFavorite,
-  onAddToCart,
-  isLoading,
-}) {
-
+function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart, isLoading }) {
   const renderItems = () => {
-    return (isLoading ? [...Array(8)] : items
-      .filter((item) =>
-        item.title.toLowerCase().includes(searchValue.toLowerCase())
-      ))
-      .map((item, index) => (
-        <Card
-          key={index}
-          onPlus={(obj) => onAddToCart(obj)}
-          onFavorite={(obj) => onAddToFavorite(obj)}
-          loading={isLoading}
-          {...item}
-        />
-      ));
+    return (
+      isLoading
+        ? [...Array(8)]
+        : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    ).map((item, index) => (
+      <Card
+        key={index}
+        onPlus={(obj) => onAddToCart(obj)}
+        onFavorite={(obj) => onAddToFavorite(obj)}
+        loading={isLoading}
+        {...item}
+      />
+    ));
   };
   return (
     <div className='content'>
       <div className='contentNameNsearchPos'>
-        <h1>
-          {searchValue ? `Поиск по запросу: ${searchValue}` : 'Все кроссовки'}
-        </h1>
+        <h1>{searchValue ? `Поиск по запросу: ${searchValue}` : 'Все кроссовки'}</h1>
         <div className='search-block'>
           <img src='/img/search.svg' alt='Search' />
           {searchValue && (
