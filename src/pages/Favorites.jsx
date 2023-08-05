@@ -8,7 +8,7 @@ function Favorites() {
   return (
     <div className='content'>
       <div className='contentNameNsearchPos'>
-        <h1>Favorites</h1>
+        <h1>Мои закладки</h1>
       </div>
       <div className='sneakers'>
         {favorites.map((item, index) => (

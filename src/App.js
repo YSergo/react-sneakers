@@ -5,6 +5,7 @@ import Drawer from './components/Drawer';
 import Home from './pages/Home';
 import { Route, Routes } from 'react-router-dom';
 import Favorites from './pages/Favorites';
+import Orders from './pages/Orders';
 
 export const appContext = React.createContext({});
 
@@ -77,6 +78,7 @@ function App() {
         cartItems,
         favorites,
         isItemAdded,
+        onAddToCart,
         onAddToFavorite,
         setCartOpened,
         setCartItems,
@@ -103,7 +105,8 @@ function App() {
               />
             }
           />
-          <Route path='favorites/' element={<Favorites />} />
+          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/orders' element={<Orders />} />
         </Routes>
       </div>
     </appContext.Provider>
