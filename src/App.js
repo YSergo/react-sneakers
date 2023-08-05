@@ -39,18 +39,25 @@ function App() {
 
   const onAddToCart = async (obj) => {
     try {
-      if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-        setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
-        await axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${obj.id}`);
-        // !(
-        //   cartItems.map((krosi) => krosi.title).includes(obj.title) &&
-        //   cartItems.map((krosi) => krosi.price).includes(obj.price)
-        // ) - старый способ
+      const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id));
+      console.log(findItem);
+      if (findItem) {
+        setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
+        await axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${findItem.id}`);
       } else {
         setCartItems((prev) => [...prev, obj]);
-        await axios.post('https://6403a93d80d9c5c7bab98673.mockapi.io/cart', obj);
-        //or using method array.some() if (!cartItems.some(krosi => krosi.title === obj.title && krosi.price === obj.price))
-        //setCartItems(prev => [...prev, obj]);
+        const { data } = await axios.post('https://6403a93d80d9c5c7bab98673.mockapi.io/cart', obj);
+        setCartItems((prev) =>
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              };
+            }
+            return item;
+          })
+        );
       }
     } catch (error) {
       alert('Возникла ошибка при добавлении товаров в корзину');
@@ -84,7 +91,7 @@ function App() {
   };
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => Number(obj.id) === Number(id));
+    return cartItems.some((obj) => Number(obj.parentId) === Number(id));
   };
 
   return (
