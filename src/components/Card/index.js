@@ -3,9 +3,10 @@ import styles from './Card.module.scss';
 import ContentLoader from 'react-content-loader';
 import { appContext } from '../../App';
 
-function Card({ id, title, price, imageUrl, onFavorite, onPlus, favorited = false, loading = false }) {
-  const { isItemAdded } = React.useContext(appContext);
-  const [isFavorite, setIsFavorite] = React.useState(favorited);
+function Card({ id, parentId, title, price, imageUrl, onFavorite, onPlus, loading = false }) {
+  const { isItemAdded, isItemFavorite } = React.useContext(appContext);
+
+  console.log(parentId);
 
   const onClickPlus = () => {
     onPlus({ id, parentId: id, title, price, imageUrl });
@@ -13,7 +14,6 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, favorited = fals
 
   const onClickFavorite = () => {
     onFavorite({ id, parentId: id, title, price, imageUrl });
-    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -37,7 +37,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, favorited = fals
         <>
           {onFavorite && (
             <div className={styles.favorite} onClick={onClickFavorite}>
-              <img src={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'} alt='Unliked' />
+              <img src={isItemFavorite(id) ? '/img/liked.svg' : '/img/unliked.svg'} alt='Unliked' />
             </div>
           )}
           <img width={133} height={112} src={imageUrl} alt='Sneakers' />
