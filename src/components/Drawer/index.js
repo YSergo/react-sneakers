@@ -12,7 +12,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { cartItems, setCartItems } = React.useContext(appContext);
+  const { cartItems, setCartItems, setCartOpened } = React.useContext(appContext);
 
   const totalPrice = cartItems.reduce((sum, obj) => sum + obj.price, 0);
 
@@ -93,6 +93,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
+            func={() => setCartOpened(false)}
           />
         )}
       </div>

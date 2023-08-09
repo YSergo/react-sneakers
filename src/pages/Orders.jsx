@@ -2,9 +2,15 @@ import Card from '../components/Card';
 import React from 'react';
 import axios from 'axios';
 
+import Info from '../components/Info';
+
+import { useNavigate } from 'react-router-dom';
+
 function Orders() {
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async () => {
@@ -25,15 +31,20 @@ function Orders() {
       <div className='contentNameNsearchPos'>
         <h1>Мои заказы</h1>
       </div>
-      <div className='sneakers'>
-        {(isLoading ? [...Array(8)] : orders).map((item, index) => (
-          <Card
-            key={index}
-            loading={isLoading}
-            {...item}
-          />
-        ))}
-      </div>
+      {orders.length > 0 ? (
+        <div className='sneakers'>
+          {(isLoading ? [...Array(8)] : orders).map((item, index) => (
+            <Card key={index} loading={isLoading} {...item} />
+          ))}
+        </div>
+      ) : (
+        <Info
+          image={'/img/empty-order.png'}
+          title={'У вас нет заказов'}
+          description={'Вы нищеброд? Оформите хотя бы один заказ.'}
+          func={() => navigate('/')}
+        />
+      )}
     </div>
   );
 }

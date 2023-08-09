@@ -1,8 +1,6 @@
-import { appContext } from '../App';
 import React from 'react';
 
-function Info({ image, title, description }) {
-  const { setCartOpened } = React.useContext(appContext);
+function Info({ image, title, description, func }) {
 
   return (
     <>
@@ -10,7 +8,7 @@ function Info({ image, title, description }) {
         <img className='mb-20' width='120px' src={image} alt='Empty' />
         <h2>{title}</h2>
         <p className='opacity-6'>{description}</p>
-        <button onClick={() => setCartOpened(false)} className='greenButton'>
+        <button onClick={func} className='greenButton'>
           <img src='/img/arrow.svg' alt='Arrow' />
           Вернуться назад
         </button>
