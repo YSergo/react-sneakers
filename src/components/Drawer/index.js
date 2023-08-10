@@ -67,7 +67,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className='cartItemImg'></div>
                   <div className='textInCartItem'>
                     <p>{obj.title}</p>
-                    <b>{numberWithSpaces(obj.price)} руб.</b>
+                    <b>${numberWithSpaces(obj.price)}</b>
                   </div>
                   <img
                     onClick={() => onRemove(obj.id)}
@@ -84,12 +84,12 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>{numberWithSpaces(totalPrice)} руб.</b>
+                  <b>${numberWithSpaces(totalPrice)}</b>
                 </li>
                 <li>
-                  <span>Налог 5%:</span>
+                  <span>Fee 5%:</span>
                   <div></div>
-                  <b>{numberWithSpaces(Math.round(totalPrice * 0.05))} руб.</b>
+                  <b>${numberWithSpaces(Math.round(totalPrice * 0.05))}</b>
                 </li>
               </ul>
               <button disabled={isLoading} onClick={onClickOrder} className='greenButton'>

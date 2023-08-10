@@ -16,14 +16,14 @@ function Favorites({ isLoading }) {
       await axios.delete(`https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${obj.id}`);
       setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
     } catch (error) {
-      alert('Не удалось удалить из закладок');
+      alert('Failed to remove from favorites');
       console.error(error);
     }
   };
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'><h1>Мои закладки</h1></div>
+      <div className='contentNameNsearchPos'><h1>My Favorites</h1></div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((item, index) => (
@@ -40,8 +40,8 @@ function Favorites({ isLoading }) {
         <Info
           image={'/img/empty-favorites.png'}
           style={{ width: '7%' }}
-          title={'Закладок нет :('}
-          description={'Вы ничего не добавляли в закладки'}
+          title={'No favorites :('}
+          description={`You haven't added anything to favorites`}
           func={() => navigate('/')}
         />
       )}

@@ -13,7 +13,7 @@ function Header(props) {
           <img width={40} height={40} src='/img/logo.png' alt='logo' />
           <div>
             <h3>React Sneakers</h3>
-            <p>Магазин лучших кроссовок</p>
+            <p>Best Sneakers Store</p>
           </div>
         </div>
       </Link>
@@ -42,16 +42,16 @@ function Header(props) {
               strokeLinejoin='round'
             />
           </svg>
-          <span>{numberWithSpaces(totalPrice)} руб.</span>
+          <span>${numberWithSpaces(totalPrice)}</span>
         </li>
-          <li className='likeIcon'>
-        <Link to='/favorites'>
-            <img width={24} height={24} src='/img/heart.svg' alt='Закладки' />
-        </Link>
-          </li>
+        <li className='likeIcon'>
+          <Link to='/favorites'>
+            <img width={24} height={24} src='/img/heart.svg' alt='Favorites' />
+          </Link>
+        </li>
         <Link to='/orders'>
           <li className='userIcon'>
-            <img width={24} height={24} src='/img/user.svg' alt='Заказы' />
+            <img width={24} height={24} src='/img/user.svg' alt='Orders' />
           </li>
         </Link>
       </ul>

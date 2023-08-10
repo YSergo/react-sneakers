@@ -19,7 +19,7 @@ function Orders() {
         // setOrders(data.reduce((prev, obj) => [ ...prev, ...obj.items], [])); - one more option
         setIsLoading(false);
       } catch (error) {
-        alert('Ошибка при запросе заказов');
+        alert('Error fetching orders');
         console.error(error);
       }
     })();
@@ -27,7 +27,7 @@ function Orders() {
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'><h1>Мои заказы</h1></div>
+      <div className='contentNameNsearchPos'><h1>My Orders</h1></div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((_, index) => (
@@ -43,8 +43,8 @@ function Orders() {
       ) : (
         <Info
           image={'/img/empty-order.png'}
-          title={'У вас нет заказов'}
-          description={'Вы нищеброд? Оформите хотя бы один заказ.'}
+          title={'You have no orders'}
+          description={'Are you broke? Place at least one order.'}
           func={() => navigate('/')}
           style={{ width: '7%' }}
         />

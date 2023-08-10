@@ -56,8 +56,8 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
           <h5>{title}</h5>
           <div className='cardBottom'>
             <div className='cardBottom2'>
-              <span>Цена:</span>
-              <b>{numberWithSpaces(price)} руб.</b>
+              <span>Price:</span>
+              <b>${numberWithSpaces(price)}</b>
             </div>
             {onPlus && (
               <img

@@ -31,7 +31,7 @@ function App() {
         setFavorites(favoritesResponse.data);
         setItems(itemsResponse.data);
       } catch (error) {
-        alert('Ошибка при запросе данных ;(');
+        alert('Error fetching data ;(');
         console.error(error);
       }
     }
@@ -60,7 +60,7 @@ function App() {
         );
       }
     } catch (error) {
-      alert('Возникла ошибка при добавлении товаров в корзину');
+      alert('Error while adding items to the cart');
       console.error(error);
     }
   };
@@ -70,7 +70,7 @@ function App() {
       axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${id}`);
       setCartItems((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
-      alert('Возникла ошибка при удалении из корзины');
+      alert('Error while removing from the cart');
       console.error(error);
     }
   };
@@ -84,12 +84,10 @@ function App() {
       } else {
         setFavorites((prev) => [...prev, obj]);
         const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/favorites', obj);
-        setFavorites((prev) => {
-          return [...prev.filter((item) => item.id !== obj.id), data];
-        });
+        setFavorites((prev) => [...prev.filter((item) => item.id !== obj.id), data]);
       }
     } catch (error) {
-      alert('Не удалось добавить в закладки');
+      alert('Failed to add to favorites');
       console.error(error);
     }
   };
@@ -103,7 +101,7 @@ function App() {
   };
 
   function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   }
 
   return (

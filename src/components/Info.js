@@ -9,7 +9,7 @@ function Info({ image, title, description, func, style }) {
         <p>{description}</p>
         <button onClick={func} className='greenButton'>
           <img src='/img/arrow.svg' alt='Arrow' />
-          Вернуться назад
+          Go back
         </button>
       </div>
     </>
