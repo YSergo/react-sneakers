@@ -102,6 +102,10 @@ function App() {
     return favorites.some((obj) => Number(obj.parentId) === Number(id));
   };
 
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+
   return (
     <appContext.Provider
       value={{
@@ -115,6 +119,7 @@ function App() {
         onAddToFavorite,
         setCartOpened,
         setCartItems,
+        numberWithSpaces,
       }}
     >
       <div className='wrapper'>

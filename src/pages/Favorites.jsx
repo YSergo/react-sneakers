@@ -2,7 +2,7 @@ import react from 'react';
 import Card from '../components/Card';
 import axios from 'axios';
 import { appContext } from '../App';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Info from '../components/Info';
 
@@ -10,9 +10,6 @@ function Favorites({ isLoading }) {
   const { favorites, setFavorites } = react.useContext(appContext);
 
   const navigate = useNavigate();
-
-  const location = useLocation();
-  const isFavoritesPage = location.pathname === '/favorites';
 
   const onDeleteOnFavoritePage = async (obj) => {
     try {
@@ -26,7 +23,7 @@ function Favorites({ isLoading }) {
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'>{isFavoritesPage ? null : <h1>Мои закладки</h1>}</div>
+      <div className='contentNameNsearchPos'><h1>Мои закладки</h1></div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((item, index) => (
@@ -42,6 +39,7 @@ function Favorites({ isLoading }) {
       ) : (
         <Info
           image={'/img/empty-favorites.png'}
+          style={{ width: '7%' }}
           title={'Закладок нет :('}
           description={'Вы ничего не добавляли в закладки'}
           func={() => navigate('/')}

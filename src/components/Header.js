@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { appContext } from '../App';
 
 function Header(props) {
-  const { cartItems } = React.useContext(appContext);
+  const { cartItems, numberWithSpaces } = React.useContext(appContext);
   const totalPrice = cartItems.reduce((sum, obj) => sum + obj.price, 0);
 
   return (
@@ -19,7 +19,7 @@ function Header(props) {
       </Link>
       <ul className='headerRight'>
         <li className='cartIconPrice' onClick={props.onClickCart}>
-          <svg width='18' height='18' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+          <svg width='24' height='24' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <path
               d='M7.54548 18.1818C7.99735 18.1818 8.36366 17.8155 8.36366 17.3636C8.36366 16.9117 7.99735 16.5454 7.54548 16.5454C7.09361 16.5454 6.72729 16.9117 6.72729 17.3636C6.72729 17.8155 7.09361 18.1818 7.54548 18.1818Z'
               stroke='#9B9B9B'
@@ -42,16 +42,16 @@ function Header(props) {
               strokeLinejoin='round'
             />
           </svg>
-          <span>{totalPrice} руб.</span>
+          <span>{numberWithSpaces(totalPrice)} руб.</span>
         </li>
-        <Link to='/favorites'>
           <li className='likeIcon'>
-            <img width={18} height={18} src='/img/heart.svg' alt='Закладки' />
-          </li>
+        <Link to='/favorites'>
+            <img width={24} height={24} src='/img/heart.svg' alt='Закладки' />
         </Link>
+          </li>
         <Link to='/orders'>
           <li className='userIcon'>
-            <img width={18} height={18} src='/img/user.svg' alt='Заказы' />
+            <img width={24} height={24} src='/img/user.svg' alt='Заказы' />
           </li>
         </Link>
       </ul>

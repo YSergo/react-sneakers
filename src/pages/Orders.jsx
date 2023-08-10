@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Card from '../components/Card';
 import Info from '../components/Info';
@@ -8,8 +8,6 @@ import Info from '../components/Info';
 function Orders() {
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-
-  const isOrdersPage = useLocation().pathname === '/orders';
 
   const navigate = useNavigate();
 
@@ -29,7 +27,7 @@ function Orders() {
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'>{isOrdersPage ? null : <h1>Мои заказы</h1>}</div>
+      <div className='contentNameNsearchPos'><h1>Мои заказы</h1></div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((_, index) => (
@@ -48,6 +46,7 @@ function Orders() {
           title={'У вас нет заказов'}
           description={'Вы нищеброд? Оформите хотя бы один заказ.'}
           func={() => navigate('/')}
+          style={{ width: '7%' }}
         />
       )}
     </div>

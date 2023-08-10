@@ -11,7 +11,23 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { cartItems, setCartItems, setCartOpened } = React.useContext(appContext);
+  const { cartItems, setCartItems, setCartOpened, numberWithSpaces } = React.useContext(appContext);
+
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (opened) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [opened, onClose]);
 
   const totalPrice = cartItems.reduce((sum, obj) => sum + obj.price, 0);
 
@@ -51,7 +67,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className='cartItemImg'></div>
                   <div className='textInCartItem'>
                     <p>{obj.title}</p>
-                    <b>{obj.price} руб.</b>
+                    <b>{numberWithSpaces(obj.price)} руб.</b>
                   </div>
                   <img
                     onClick={() => onRemove(obj.id)}
@@ -68,12 +84,12 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>{totalPrice} руб.</b>
+                  <b>{numberWithSpaces(totalPrice)} руб.</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>{Math.round(totalPrice * 0.05)} руб.</b>
+                  <b>{numberWithSpaces(Math.round(totalPrice * 0.05))} руб.</b>
                 </li>
               </ul>
               <button disabled={isLoading} onClick={onClickOrder} className='greenButton'>
@@ -91,6 +107,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
             func={() => setCartOpened(false)}
+            style={isOrderComplete ? { width: '30%'} : { width: '40%'}}
           />
         )}
       </div>

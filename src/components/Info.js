@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Info({ image, title, description, func }) {
+function Info({ image, title, description, func, style }) {
   return (
     <>
       <div className='cartEmpty'>
-        <img className='mb-20' width='120px' src={image} alt='Empty' />
-        <h2>{title}</h2>
-        <p className='opacity-6'>{description}</p>
+        <img className='mb-20' width='120px' src={image} alt='Empty' style={style} />
+        <h2 className='infoTitle'>{title}</h2>
+        <p>{description}</p>
         <button onClick={func} className='greenButton'>
           <img src='/img/arrow.svg' alt='Arrow' />
           Вернуться назад

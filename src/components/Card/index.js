@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import styles from './Card.module.scss';
 
 function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false }) {
-  const { isItemAdded, isItemFavorite } = React.useContext(appContext);
+  const { isItemAdded, isItemFavorite, numberWithSpaces } = React.useContext(appContext);
 
   const onClickPlus = () => {
     onPlus({ id, parentId: id, title, price, imageUrl });
@@ -40,13 +40,13 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
         <>
           {onFavorite && (
             <div className={styles.favorite} onClick={onClickFavorite}>
-              <img
+              <img width={32} height={32}
                 src={
                   isFavoritesPage
                     ? '/img/liked.svg'
                     : isItemFavorite(id)
                     ? '/img/liked.svg'
-                    : '/img/unliked.svg'
+                    : '/img/unliked.png'
                 }
                 alt='Unliked'
               />
@@ -57,7 +57,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
           <div className='cardBottom'>
             <div className='cardBottom2'>
               <span>Цена:</span>
-              <b>{price} руб.</b>
+              <b>{numberWithSpaces(price)} руб.</b>
             </div>
             {onPlus && (
               <img
