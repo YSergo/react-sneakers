@@ -19,7 +19,9 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
   return (
     <div className='content'>
       <div className='contentNameNsearchPos'>
-        <h1>{searchValue ? `Поиск по запросу: ${searchValue}` : 'Все кроссовки'}</h1>
+        <h1 style={{ cursor: 'pointer' }} onClick={() => window.location.reload()}>
+          {searchValue ? `Поиск по запросу: ${searchValue}` : 'Все кроссовки'}
+        </h1>
         <div className='search-block'>
           <img src='/img/search.svg' alt='Search' />
           {searchValue && (
