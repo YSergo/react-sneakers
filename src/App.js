@@ -138,7 +138,7 @@ function App() {
               />
             }
           />
-          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/favorites' element={<Favorites isLoading={isLoading}/>} />
           <Route path='/orders' element={<Orders />} />
         </Routes>
       </div>

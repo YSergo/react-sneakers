@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import Info from '../components/Info';
 
-function Favorites() {
+function Favorites({ isLoading }) {
   const { favorites, setFavorites } = react.useContext(appContext);
 
   const navigate = useNavigate();
@@ -27,10 +27,16 @@ function Favorites() {
   return (
     <div className='content'>
       <div className='contentNameNsearchPos'>{isFavoritesPage ? null : <h1>Мои закладки</h1>}</div>
-      {favorites.length > 0 ? (
+      {isLoading ? (
+        <div className='sneakers'>
+          {[...Array(8)].map((item, index) => (
+            <Card key={index} onFavorite={onDeleteOnFavoritePage} loading={true} {...item} />
+          ))}
+        </div>
+      ) : favorites.length > 0 ? (
         <div className='sneakers'>
           {favorites.map((item, index) => (
-            <Card key={index} onFavorite={onDeleteOnFavoritePage} {...item} />
+            <Card key={index} loading={false} onFavorite={onDeleteOnFavoritePage} {...item} />
           ))}
         </div>
       ) : (

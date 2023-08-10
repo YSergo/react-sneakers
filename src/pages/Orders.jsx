@@ -30,10 +30,16 @@ function Orders() {
   return (
     <div className='content'>
       <div className='contentNameNsearchPos'>{isOrdersPage ? null : <h1>Мои заказы</h1>}</div>
-      {orders.length > 0 ? (
+      {isLoading ? (
         <div className='sneakers'>
-          {(isLoading ? [...Array(8)] : orders).map((item, index) => (
-            <Card key={index} loading={isLoading} {...item} />
+          {[...Array(8)].map((_, index) => (
+            <Card key={index} loading={true} />
+          ))}
+        </div>
+      ) : orders.length > 0 ? (
+        <div className='sneakers'>
+          {orders.map((item, index) => (
+            <Card key={index} loading={false} {...item} />
           ))}
         </div>
       ) : (
