@@ -74,13 +74,13 @@ function App() {
     }
   };
 
-  const onAddToFavorite = async (obj) => {
+  const onAddToFavorite = async (obj) => { 
     console.log('onAddToFavorite called with', obj); //объекты разные на двух страницах, а код один
     try {
-      const findItem = favorites.find((favObj) => Number(favObj.id) === Number(obj.id));
+      const findItem = favorites.find((favObj) => Number(favObj.parentId) === Number(obj.id)); // разобрать каждый вариант объекта
       if (findItem) {
-        await axios.delete(`https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${obj.id}`);
-        setFavorites((prev) => prev.filter((item) =>  Number(item.id) !== Number(obj.id)));
+        await axios.delete(`https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${findItem.id}`);
+        setFavorites((prev) => prev.filter((item) =>  Number(item.parentId) !== Number(obj.id)));
       } else {
         const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/favorites', obj);
         setFavorites((prev) => [...prev, data]);
@@ -105,6 +105,7 @@ function App() {
         items,
         cartItems,
         favorites,
+        setFavorites,
         isItemAdded,
         isItemFavorite,
         onAddToCart,

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Card.module.scss';
 import ContentLoader from 'react-content-loader';
 import { appContext } from '../../App';
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false }) {
   const { isItemAdded, isItemFavorite } = React.useContext(appContext);
@@ -11,12 +11,12 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
     onPlus({ id, parentId: id, title, price, imageUrl });
   };
 
-  const onClickFavorite = () => {
+  const onClickFavorite = () => { 
     onFavorite({ id, parentId: id, title, price, imageUrl });
   };
 
   const location = useLocation();
-  const isFavoritesPage = location.pathname === "/favorites";
+  const isFavoritesPage = location.pathname === '/favorites';
 
   return (
     <div className={styles.card}>
@@ -39,7 +39,16 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
         <>
           {onFavorite && (
             <div className={styles.favorite} onClick={onClickFavorite}>
-              <img src={(isFavoritesPage) ? '/img/liked.svg'  :(isItemFavorite(id) ? '/img/liked.svg' : '/img/unliked.svg')}  alt='Unliked' />
+              <img
+                src={
+                  isFavoritesPage
+                    ? '/img/liked.svg'
+                    : isItemFavorite(id)
+                    ? '/img/liked.svg'
+                    : '/img/unliked.svg'
+                }
+                alt='Unliked'
+              />
             </div>
           )}
           <img width={133} height={112} src={imageUrl} alt='Sneakers' />

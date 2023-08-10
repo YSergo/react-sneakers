@@ -4,11 +4,13 @@ import axios from 'axios';
 
 import Info from '../components/Info';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Orders() {
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
+  const isOrdersPage = useLocation().pathname === '/orders';
 
   const navigate = useNavigate();
 
@@ -28,9 +30,7 @@ function Orders() {
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'>
-        <h1>Мои заказы</h1>
-      </div>
+      <div className='contentNameNsearchPos'>{isOrdersPage ? null : <h1>Мои заказы</h1>}</div>
       {orders.length > 0 ? (
         <div className='sneakers'>
           {(isLoading ? [...Array(8)] : orders).map((item, index) => (
