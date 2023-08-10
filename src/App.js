@@ -76,15 +76,17 @@ function App() {
   };
 
   const onAddToFavorite = async (obj) => {
-    console.log('onAddToFavorite called with', obj);
     try {
       const findItem = favorites.find((favObj) => Number(favObj.parentId) === Number(obj.id));
       if (findItem) {
-        await axios.delete(`https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${findItem.id}`);
         setFavorites((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
+        await axios.delete(`https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${findItem.id}`);
       } else {
+        setFavorites((prev) => [...prev, obj]);
         const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/favorites', obj);
-        setFavorites((prev) => [...prev, data]);
+        setFavorites((prev) => {
+          return [...prev.filter((item) => item.id !== obj.id), data];
+        });
       }
     } catch (error) {
       alert('Не удалось добавить в закладки');
@@ -138,7 +140,7 @@ function App() {
               />
             }
           />
-          <Route path='/favorites' element={<Favorites isLoading={isLoading}/>} />
+          <Route path='/favorites' element={<Favorites isLoading={isLoading} />} />
           <Route path='/orders' element={<Orders />} />
         </Routes>
       </div>
