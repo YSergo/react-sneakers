@@ -1,12 +1,14 @@
-import Card from '../components/Card';
-import { appContext } from '../App';
 import react from 'react';
-import Info from '../components/Info';
-import { useNavigate, useLocation } from 'react-router-dom';
+import Card from '../components/Card';
 import axios from 'axios';
+import { appContext } from '../App';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import Info from '../components/Info';
 
 function Favorites() {
   const { favorites, setFavorites } = react.useContext(appContext);
+
   const navigate = useNavigate();
 
   const location = useLocation();

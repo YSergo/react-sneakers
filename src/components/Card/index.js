@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './Card.module.scss';
 import ContentLoader from 'react-content-loader';
 import { appContext } from '../../App';
 import { useLocation } from 'react-router-dom';
+
+import styles from './Card.module.scss';
 
 function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false }) {
   const { isItemAdded, isItemFavorite } = React.useContext(appContext);
@@ -11,7 +12,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
     onPlus({ id, parentId: id, title, price, imageUrl });
   };
 
-  const onClickFavorite = () => { 
+  const onClickFavorite = () => {
     onFavorite({ id, parentId: id, title, price, imageUrl });
   };
 

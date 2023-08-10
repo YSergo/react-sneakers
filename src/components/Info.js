@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Info({ image, title, description, func }) {
-
   return (
     <>
       <div className='cartEmpty'>

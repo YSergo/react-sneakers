@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
+
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 import Home from './pages/Home';
-import { Route, Routes } from 'react-router-dom';
 import Favorites from './pages/Favorites';
 import Orders from './pages/Orders';
 
@@ -74,13 +75,13 @@ function App() {
     }
   };
 
-  const onAddToFavorite = async (obj) => { 
-    console.log('onAddToFavorite called with', obj); //объекты разные на двух страницах, а код один
+  const onAddToFavorite = async (obj) => {
+    console.log('onAddToFavorite called with', obj);
     try {
-      const findItem = favorites.find((favObj) => Number(favObj.parentId) === Number(obj.id)); // разобрать каждый вариант объекта
+      const findItem = favorites.find((favObj) => Number(favObj.parentId) === Number(obj.id));
       if (findItem) {
         await axios.delete(`https://641a29baf398d7d95d51f32d.mockapi.io/favorites/${findItem.id}`);
-        setFavorites((prev) => prev.filter((item) =>  Number(item.parentId) !== Number(obj.id)));
+        setFavorites((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
       } else {
         const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/favorites', obj);
         setFavorites((prev) => [...prev, data]);
@@ -97,7 +98,7 @@ function App() {
 
   const isItemFavorite = (id) => {
     return favorites.some((obj) => Number(obj.parentId) === Number(id));
-  }; //all is okay
+  };
 
   return (
     <appContext.Provider

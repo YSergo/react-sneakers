@@ -1,10 +1,9 @@
-import Card from '../components/Card';
 import React from 'react';
 import axios from 'axios';
-
-import Info from '../components/Info';
-
 import { useNavigate, useLocation } from 'react-router-dom';
+
+import Card from '../components/Card';
+import Info from '../components/Info';
 
 function Orders() {
   const [orders, setOrders] = React.useState([]);
