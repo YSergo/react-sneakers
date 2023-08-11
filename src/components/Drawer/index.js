@@ -45,9 +45,9 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
         const item = cartItems[i];
         await axios.delete('https://6403a93d80d9c5c7bab98673.mockapi.io/cart/' + item.id);
         await delay(1000);
-      } //ebuchiy mockapi :(;
+      } //damn mockapi :(;
     } catch {
-      alert('Ошибка при создании заказа :C');
+      alert('Error when creating the order :C');
     }
     setIsLoading(false);
   };
@@ -56,7 +56,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
     <div onClick={onClose} className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div onClick={(event) => event.stopPropagation()} className={styles.drawer}>
         <h2>
-          Корзина <img onClick={onClose} className={styles.removeBtn} src='/img/btn-remove.svg' alt='Close' />
+          Cart <img onClick={onClose} className={styles.removeBtn} src='/img/btn-remove.svg' alt='Close' />
         </h2>
 
         {items.length > 0 ? (
@@ -82,7 +82,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
             <div className='cartTotalBlock'>
               <ul>
                 <li>
-                  <span>Итого:</span>
+                  <span>Total:</span>
                   <div></div>
                   <b>${numberWithSpaces(totalPrice)}</b>
                 </li>
@@ -93,18 +93,18 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 </li>
               </ul>
               <button disabled={isLoading} onClick={onClickOrder} className='greenButton'>
-                Оформить заказ <img src='/img/arrow.svg' alt='Arrow' />
+                Place order <img src='/img/arrow.svg' alt='Arrow' />
               </button>
             </div>
           </div>
         ) : (
           <Info
             image={isOrderComplete ? '/img/complete-order.png' : '/img/empty-cart.jpg'}
-            title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
+            title={isOrderComplete ? 'Order placed!' : 'Cart is empty'}
             description={
               isOrderComplete
-                ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
-                : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+                ? `Your order #${orderId} will soon be handed over for courier delivery`
+                : 'Add at least one pair of sneakers to place an order.'
             }
             func={() => setCartOpened(false)}
             style={isOrderComplete ? { width: '30%'} : { width: '40%'}}
