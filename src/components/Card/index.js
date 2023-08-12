@@ -54,7 +54,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
               />
             </div>
           )}
-          <img width={133} height={112} src={imageUrl} alt='Sneakers' />
+          <img width={146} height={123} src={imageUrl} alt='Sneakers' />
           <h5>{title}</h5>
           <div className='cardBottom'>
             <div className='cardBottom2'>
