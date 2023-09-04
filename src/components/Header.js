@@ -42,7 +42,7 @@ function Header(props) {
               strokeLinejoin='round'
             />
           </svg>
-          <span>${numberWithSpaces(totalPrice)}</span>
+          <span>{numberWithSpaces(totalPrice)} ₽</span>
         </li>
         <li className='likeIcon'>
           <Link to='/favorites'>

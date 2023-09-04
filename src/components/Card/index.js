@@ -59,7 +59,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
           <div className='cardBottom'>
             <div className='cardBottom2'>
               <span>Price:</span>
-              <b>${numberWithSpaces(price)}</b>
+              <b>{numberWithSpaces(price)} ₽</b>
             </div>
             {onPlus && (
               <img
@@ -67,7 +67,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
                 height={32}
                 className={styles.plus}
                 onClick={onClickPlus}
-                src={isItemAdded(id) ? '/img/btn-checked.png' : '/img/btn-plus.svg'}
+                src={isItemAdded(imageUrl) ? '/img/btn-checked.png' : '/img/btn-plus.svg'}
                 alt='Add'
               />
             )}

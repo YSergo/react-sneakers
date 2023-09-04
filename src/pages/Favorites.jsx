@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Info from '../components/Info';
 
 function Favorites({ isLoading }) {
-  const { favorites, setFavorites } = react.useContext(appContext);
+  const { favorites, setFavorites, onAddToCart } = react.useContext(appContext);
 
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ function Favorites({ isLoading }) {
       ) : favorites.length > 0 ? (
         <div className='sneakers'>
           {favorites.map((item, index) => (
-            <Card key={index} loading={false} onFavorite={onDeleteOnFavoritePage} {...item} />
+            <Card key={index} loading={false} onFavorite={onDeleteOnFavoritePage} onPlus={onAddToCart} {...item} />
           ))}
         </div>
       ) : (
