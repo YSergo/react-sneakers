@@ -24,17 +24,17 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
       {loading ? (
         <ContentLoader
           speed={2}
-          width={150}
-          height={187}
-          viewBox='0 0 150 187'
+          width={158}
+          height={198}
+          viewBox='0 0 158 198'
           backgroundColor='#f3f3f3'
           foregroundColor='#ecebeb'
         >
-          <rect x='0' y='107' rx='5' ry='5' width='150' height='15' />
-          <rect x='0' y='127' rx='5' ry='5' width='100' height='15' />
-          <rect x='0' y='156' rx='10' ry='10' width='80' height='25' />
-          <rect x='114' y='152' rx='10' ry='10' width='32' height='32' />
-          <rect x='0' y='0' rx='10' ry='10' width='150' height='90' />
+          <rect x='0' y='120' rx='5' ry='5' width='158' height='15' />
+          <rect x='0' y='140' rx='5' ry='5' width='100' height='15' />
+          <rect x='0' y='171' rx='10' ry='10' width='60' height='25' />
+          <rect x='126' y='166' rx='10' ry='10' width='32' height='32' />
+          <rect x='0' y='0' rx='10' ry='10' width='158' height='110' />
         </ContentLoader>
       ) : (
         <>
@@ -54,7 +54,16 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
               />
             </div>
           )}
-          <img width={146} height={123} src={imageUrl} alt='Sneakers' />
+          <img
+            style={{
+              display: 'block', // Убираем внешние отступы
+              margin: '0 auto', // Центрируем по горизонтали
+            }}
+            width={133}
+            height={112}
+            src={imageUrl}
+            alt='Sneakers'
+          />
           <h5>{title}</h5>
           <div className='cardBottom'>
             <div className='cardBottom2'>

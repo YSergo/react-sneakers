@@ -27,7 +27,7 @@ function Orders() {
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'><h1>My Orders</h1></div>
+      <div className='contentNameNsearchPos'><h1>My orders</h1></div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((_, index) => (

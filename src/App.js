@@ -41,9 +41,9 @@ function App() {
   const onAddToCart = async (obj) => {
     try {
       const findItem = cartItems.find((item) => item.imageUrl === obj.imageUrl);
-    if (findItem) {
+      if (findItem) {
         setCartItems((prev) => prev.filter((item) => item.imageUrl !== obj.imageUrl));
-       await axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${findItem.id}`);
+        await axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${findItem.id}`);
       } else {
         setCartItems((prev) => [...prev, obj]);
         const { data } = await axios.post('https://6403a93d80d9c5c7bab98673.mockapi.io/cart', obj);
