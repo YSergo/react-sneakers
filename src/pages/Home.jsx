@@ -23,12 +23,12 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
           {searchValue ? `Search results for: ${searchValue}` : 'All Sneakers'}
         </h1>
         <div className='search-block'>
-          <img src='/img/search.svg' alt='Search' />
+          <img src='img/search.svg' alt='Search' />
           {searchValue && (
             <img
               onClick={() => setSearchValue('')}
               className='clear-btn'
-              src='/img/btn-remove.svg'
+              src='img/btn-remove.svg'
               alt='Clear'
             />
           )}

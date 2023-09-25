@@ -45,10 +45,10 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
                 height={32}
                 src={
                   isFavoritesPage
-                    ? '/img/liked.svg'
+                    ? 'img/liked.svg'
                     : isItemFavorite(id)
-                    ? '/img/liked.svg'
-                    : '/img/unliked.png'
+                    ? 'img/liked.svg'
+                    : 'img/unliked.png'
                 }
                 alt='Unliked'
               />
@@ -76,7 +76,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
                 height={32}
                 className={styles.plus}
                 onClick={onClickPlus}
-                src={isItemAdded(imageUrl) ? '/img/btn-checked.png' : '/img/btn-plus.svg'}
+                src={isItemAdded(imageUrl) ? 'img/btn-checked.png' : 'img/btn-plus.svg'}
                 alt='Add'
               />
             )}

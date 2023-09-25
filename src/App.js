@@ -31,7 +31,7 @@ function App() {
         setFavorites(favoritesResponse.data);
         setItems(itemsResponse.data);
       } catch (error) {
-        alert('Error fetching data ;(');
+        alert('Error fetching data. Perhaps mockapi problem. Try slow down ;(');
         console.error(error);
       }
     }
@@ -60,7 +60,7 @@ function App() {
         );
       }
     } catch (error) {
-      alert('Error while adding items to the cart');
+      alert('Error while adding items to the cart. Perhaps mockapi problem. Try slow down');
       console.error(error);
     }
   };
@@ -70,7 +70,7 @@ function App() {
       axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${id}`);
       setCartItems((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
-      alert('Error while removing from the cart');
+      alert('Error while removing from the cart. Perhaps mockapi problem. Try slow down');
       console.error(error);
     }
   };
