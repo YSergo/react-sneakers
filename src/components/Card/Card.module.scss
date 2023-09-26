@@ -5,6 +5,11 @@
   border-radius: 40px;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
+  .photo {
+    display: block; // Убираем внешние отступы
+    margin: 0 auto; // Центрируем по горизонтали
+  }
+
   .plus {
     cursor: pointer;
   }
@@ -24,7 +29,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .cardBottom2 {
     display: flex;
     flex-direction: column;
@@ -45,5 +50,63 @@
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    border: 1px solid #f3f3f3;
+    padding: 5%;
+    width: calc(
+      50% - 6px
+    ); //если gap равен 12px, то каждая карточка будет уменьшена на половину этого значения, т.е. 6px
+    border-radius: 30px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+    .photo {
+      height: auto;
+      width: 90%;
+    }
+    .plus {
+      cursor: pointer;
+    }
+
+    &:hover {
+      box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);
+      transform: translateY(-5px);
+    }
+
+    .favorite {
+      position: absolute;
+      cursor: pointer;
+    }
+
+    .cardBottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cardBottom2 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    span {
+      font-size: 3vw;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    b {
+      font-size: 3vw;
+    }
+
+    h5 {
+      font-weight: 400;
+      font-size: 3vw;
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
   }
 }

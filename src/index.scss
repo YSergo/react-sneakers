@@ -376,7 +376,7 @@ header {
     .contentNameNsearchPos {
       display: flex;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 18px;
       justify-content: space-between;
 
       h1 {
@@ -408,7 +408,8 @@ header {
       border: 0;
       padding: 13px;
       font-size: 16px;
-      width: 90px;
+      width: 30vw;
+      box-sizing: border-box;
     }
   }
   //
@@ -416,6 +417,6 @@ header {
   .sneakers {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
   }
 }
