@@ -320,3 +320,113 @@ header {
     opacity: 1;
   }
 }
+
+@media (max-width: 767px) {
+  body {
+    padding: 3%;
+  }
+
+  .wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  //header
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5%;
+    border-bottom: 1px solid #eaeaea;
+
+    .headerLeft {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 8%;
+      }
+
+      h3,
+      p {
+        margin: 0px;
+      }
+
+      p {
+        opacity: 0.5;
+        display: none;
+      }
+    }
+  }
+
+  .headerRight {
+    display: flex;
+
+    .cartIconPrice {
+      margin-right: 30px;
+      cursor: pointer;
+
+      span {
+        margin-left: 10px;
+        position: relative;
+        top: 5px;
+        display: none;
+      }
+    }
+    .likeIcon {
+      cursor: pointer;
+      margin-right: 30px;
+    }
+  }
+  //
+
+  //name, search, content
+  .content {
+    padding: 5%;
+
+    .contentNameNsearchPos {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      justify-content: space-between;
+
+      h1 {
+        margin: 0;
+        overflow: auto; //my fix for flying search-block
+        font-weight: 700;
+        font-size: 18px;
+      }
+    }
+  }
+  .search-block {
+    border: 1px solid #f3f3f3;
+    border-radius: 10px;
+    padding: 0px 15px;
+    display: flex;
+    position: relative;
+
+    .clear-btn {
+      right: 0;
+      cursor: pointer;
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 14px;
+      right: 15px;
+    }
+
+    input {
+      border: 0;
+      padding: 13px;
+      font-size: 16px;
+      width: 90px;
+    }
+  }
+  //
+
+  .sneakers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
