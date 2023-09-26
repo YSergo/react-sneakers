@@ -98,22 +98,11 @@ header {
 
     h1 {
       margin: 0;
-      overflow: auto; //my fix for flying search-block
+      overflow: auto;
       font-weight: 700;
       font-size: 32;
     }
   }
-}
-
-.cardBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cardBottom2 {
-  display: flex;
-  flex-direction: column;
 }
 
 .sneakers {
@@ -194,49 +183,6 @@ header {
   }
 }
 
-.cartTotalBlock {
-  ul {
-    display: block;
-    margin-bottom: 40px;
-
-    li {
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 20px;
-
-      div {
-        flex: 1;
-        height: 1px;
-        border-bottom: 1px dashed #dfdfdf;
-        position: relative;
-        top: -4px;
-        margin: 0 7px;
-      }
-    }
-  }
-
-  .greenButton {
-    position: relative;
-
-    &:disabled {
-      animation: button-loading 0.6s ease-in-out infinite;
-    }
-
-    &:hover {
-      img {
-        transform: translateX(5px);
-      }
-    }
-
-    img {
-      position: absolute;
-      right: 30px;
-      top: 20px;
-      transition: transform 0.15s ease-in-out;
-    }
-  }
-}
-
 .greenButton {
   width: 100%;
   height: 55px;
@@ -263,50 +209,6 @@ header {
   }
 }
 
-.cartItem {
-  display: flex;
-  align-items: center;
-  border: 1px solid #f3f3f3;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 20px;
-  margin-bottom: 20px;
-
-  p {
-    margin: 0;
-    margin-bottom: 5px;
-    font-size: 16px;
-  }
-
-  b {
-    font-size: 14px;
-  }
-
-  .removeBtn {
-    opacity: 0.5;
-    transition: opacity 0.2s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-.cartItemImg {
-  width: 70px;
-  height: 70px;
-  background-size: contain;
-  background-position: 0 -3px;
-  background-repeat: no-repeat;
-  margin-right: 20px;
-}
-
-.textInCartItem {
-  margin-right: 20px;
-  flex: 1;
-}
-
 @keyframes button-loading {
   0% {
     opacity: 1;
@@ -318,5 +220,132 @@ header {
 
   100% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    padding: 3%;
+  }
+
+  .wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  //header
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5%;
+    border-bottom: 1px solid #eaeaea;
+
+    .headerLeft {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 8%;
+      }
+
+      h3 {
+        font-size: 3.6vw;
+      }
+      
+      h3,
+      p {
+        margin: 0px;
+      }
+
+      p {
+        opacity: 0.5;
+        display: none;
+      }
+    }
+  }
+
+  .headerRight {
+    display: flex;
+
+    .cartIconPrice {
+      margin-right: 32px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center; 
+
+      span {
+        margin-right: px;
+        position: absolute;
+        top: 30px;
+        font-size: 3vw;
+        white-space: nowrap;
+        color: #797979;
+        font-weight: bold;
+        // display: none;
+      }
+    }
+
+    .likeIcon {
+      cursor: pointer;
+      margin-right: 30px;
+    }
+  }
+  //
+
+  //name, search, content
+  .content {
+    padding: 5%;
+
+    .contentNameNsearchPos {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+      justify-content: space-between;
+
+      h1 {
+        margin: 0;
+        overflow: auto;
+        font-weight: 700;
+        font-size: 5vw;
+      }
+    }
+  }
+  .search-block {
+    border: 1px solid #f3f3f3;
+    border-radius: 10px;
+    padding: 0px 15px;
+    display: flex;
+    position: relative;
+    width: calc(
+      50% - 6px
+    );
+
+    .clear-btn {
+      right: 0;
+      cursor: pointer;
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 14px;
+      right: 15px;
+    }
+
+    input {
+      border: 0;
+      padding: 13px;
+      font-size: 16px;
+      width: 30vw;
+      box-sizing: border-box;
+    }
+  }
+  //
+
+  .sneakers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 }

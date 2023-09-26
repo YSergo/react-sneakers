@@ -55,18 +55,15 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
             </div>
           )}
           <img
-            style={{
-              display: 'block', // Убираем внешние отступы
-              margin: '0 auto', // Центрируем по горизонтали
-            }}
+            className={styles.photo}
             width={133}
             height={112}
             src={imageUrl}
             alt='Sneakers'
           />
           <h5>{title}</h5>
-          <div className='cardBottom'>
-            <div className='cardBottom2'>
+          <div className={styles.cardBottom}>
+            <div className={styles.cardBottom2}>
               <span>Price:</span>
               <b>{numberWithSpaces(price)} ₽</b>
             </div>

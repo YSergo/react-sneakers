@@ -63,15 +63,15 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
           <div className={styles.itemsParent}>
             <div className={styles.items}>
               {items.map((obj) => (
-                <div key={obj.id} className='cartItem'>
-                  <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className='cartItemImg'></div>
-                  <div className='textInCartItem'>
+                <div key={obj.id} className={styles.cartItem}>
+                  <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className={styles.cartItemImg}></div>
+                  <div className={styles.textInCartItem}>
                     <p>{obj.title}</p>
                     <b>{numberWithSpaces(obj.price)} ₽</b>
                   </div>
                   <img
                     onClick={() => onRemove(obj.id)}
-                    className='removeBtn'
+                    className={styles.removeBtn}
                     src='img/btn-remove.svg'
                     alt='Remove'
                   />
@@ -79,7 +79,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
               ))}
             </div>
 
-            <div className='cartTotalBlock'>
+            <div className={styles.cartTotalBlock}>
               <ul>
                 <li>
                   <span>Total:</span>
