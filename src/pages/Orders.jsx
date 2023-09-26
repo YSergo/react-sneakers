@@ -46,7 +46,7 @@ function Orders() {
           title={'You have no orders'}
           description={'Are you broke? Place at least one order.'}
           func={() => navigate('/')}
-          style={{ width: '7%' }}
+          style={{ width: '70px' }}
         />
       )}
     </div>
