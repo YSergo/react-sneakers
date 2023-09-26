@@ -3,6 +3,8 @@
   padding: 30px;
   width: 220px;
   border-radius: 40px;
+  display: flex;
+  flex-direction: column;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
   .photo {
@@ -46,6 +48,7 @@
   }
 
   h5 {
+    flex: 1;
     font-weight: 400;
     font-size: 14px;
     margin-top: 10px;

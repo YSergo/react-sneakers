@@ -336,6 +336,10 @@ header {
         margin-right: 8%;
       }
 
+      h3 {
+        font-size: 3.6vw;
+      }
+      
       h3,
       p {
         margin: 0px;
@@ -352,16 +356,25 @@ header {
     display: flex;
 
     .cartIconPrice {
-      margin-right: 30px;
+      margin-right: 32px;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center; 
 
       span {
-        margin-left: 10px;
-        position: relative;
-        top: 5px;
-        display: none;
+        margin-right: px;
+        position: absolute;
+        top: 30px;
+        font-size: 3vw;
+        white-space: nowrap;
+        color: #797979;
+        font-weight: bold;
+        // display: none;
       }
     }
+
     .likeIcon {
       cursor: pointer;
       margin-right: 30px;
@@ -383,7 +396,7 @@ header {
         margin: 0;
         overflow: auto; //my fix for flying search-block
         font-weight: 700;
-        font-size: 18px;
+        font-size: 5vw;
       }
     }
   }
@@ -393,6 +406,9 @@ header {
     padding: 0px 15px;
     display: flex;
     position: relative;
+    width: calc(
+      50% - 6px
+    );
 
     .clear-btn {
       right: 0;
