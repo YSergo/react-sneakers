@@ -65,8 +65,8 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
             alt='Sneakers'
           />
           <h5>{title}</h5>
-          <div className='cardBottom'>
-            <div className='cardBottom2'>
+          <div className={styles.cardBottom}>
+            <div className={styles.cardBottom2}>
               <span>Price:</span>
               <b>{numberWithSpaces(price)} ₽</b>
             </div>

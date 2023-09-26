@@ -19,6 +19,17 @@
     cursor: pointer;
   }
 
+  .cardBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cardBottom2 {
+    display: flex;
+    flex-direction: column;
+  }
+
   span {
     font-size: 13px;
     opacity: 0.5;
