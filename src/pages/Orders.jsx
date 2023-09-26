@@ -42,7 +42,7 @@ function Orders() {
         </div>
       ) : (
         <Info
-          image={'img/empty-order.png'}
+          image={'react-sneakers/img/empty-order.png'}
           title={'You have no orders'}
           description={'Are you broke? Place at least one order.'}
           func={() => navigate('/')}

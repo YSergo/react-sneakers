@@ -10,7 +10,7 @@ function Header(props) {
     <header>
       <Link to='/'>
         <div className='headerLeft'>
-          <img width={40} height={40} src='img/logo.png' alt='logo' />
+          <img width={40} height={40} src='react-sneakers/img/logo.png' alt='logo' />
           <div>
             <h3>React Sneakers</h3>
             <p>Best Sneakers Store</p>
@@ -46,12 +46,12 @@ function Header(props) {
         </li>
         <li className='likeIcon'>
           <Link to='/favorites'>
-            <img width={24} height={24} src='img/heart.svg' alt='Favorites' />
+            <img width={24} height={24} src='react-sneakers/img/heart.svg' alt='Favorites' />
           </Link>
         </li>
         <Link to='/orders'>
           <li className='userIcon'>
-            <img width={24} height={24} src='img/user.svg' alt='Orders' />
+            <img width={24} height={24} src='react-sneakers/img/user.svg' alt='Orders' />
           </li>
         </Link>
       </ul>
