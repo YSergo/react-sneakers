@@ -23,7 +23,7 @@ function Favorites({ isLoading }) {
 
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'><h1>Favorites</h1></div>
+      <div className='contentTitleSearch'><h1>Favorites</h1></div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((item, index) => (

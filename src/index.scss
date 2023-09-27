@@ -90,7 +90,7 @@ header {
 .content {
   padding: 40px;
 
-  .contentNameNsearchPos {
+  .contentTitleSearch {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
@@ -328,7 +328,7 @@ header {
   .content {
     padding: 5%;
 
-    .contentNameNsearchPos {
+    .contentTitleSearch {
       display: flex;
       align-items: center;
       margin-bottom: 18px;
@@ -342,28 +342,34 @@ header {
       }
     }
   }
+  
   .search-block {
     border: 1px solid #f3f3f3;
     border-radius: 10px;
-    padding: 0px 15px;
+    padding: 0px 3.5vw;
     display: flex;
     position: relative;
     width: calc(50% - 6px);
+    height: 12.3vw;
+
+    .lupa {
+      width: 6vw;
+    }
 
     .clear-btn {
       right: 0;
       cursor: pointer;
       position: absolute;
-      width: 18px;
-      height: 18px;
-      top: 14px;
-      right: 15px;
+      width: 5vw;
+      height: 5vw;
+      top: 3.5vw;
+      right: 3.4vw;
     }
 
     input {
       border: 0;
       padding: 13px;
-      font-size: 16px;
+      font-size: 4.2vw;
       width: 30vw;
       box-sizing: border-box;
     }

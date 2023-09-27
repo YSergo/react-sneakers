@@ -18,12 +18,12 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
   };
   return (
     <div className='content'>
-      <div className='contentNameNsearchPos'>
+      <div className='contentTitleSearch'>
         <h1 style={{ cursor: 'pointer' }} onClick={() => window.location.reload()}>
           {searchValue ? `Search results for: ${searchValue}` : 'All Sneakers'}
         </h1>
         <div className='search-block'>
-          <img src='react-sneakers/img/search.svg' alt='Search' />
+          <img className='lupa' src='react-sneakers/img/search.svg' alt='Search' />
           {searchValue && (
             <img
               onClick={() => setSearchValue('')}
