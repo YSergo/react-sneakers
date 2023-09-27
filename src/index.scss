@@ -256,7 +256,7 @@ header {
   .headerRight {
     display: flex;
 
- /*    .cartIconPrice {
+    /*    .cartIconPrice {
       margin-right: 30px;
       cursor: pointer;
   
@@ -328,7 +328,7 @@ header {
       }
     }
   }
-  
+
   .search-block {
     border: 1px solid #f3f3f3;
     border-radius: 10px;
@@ -368,3 +368,19 @@ header {
     gap: 12px;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1080px) {
+  body {
+    padding: 3%;
+  }
+  .wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .sneakers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+

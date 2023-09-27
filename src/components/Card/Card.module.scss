@@ -121,3 +121,43 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1080px) {
+  .card {
+    width: calc(
+      33% - 6px
+    ); /* если gap равен 12px, то каждая карточка будет 
+    уменьшена на половину этого значения, т.е. 6px */
+    
+    span {
+      font-size: 2vw;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    b {
+      font-size: 2vw;
+    }
+
+    h5 {
+      font-weight: 400;
+      font-size: 2vw;
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
+  }
+  .photo {
+    height: auto;
+    width: 80%;
+  }
+  .plus {
+    height: 4.7vw;
+    width: 4.7vw;
+  }
+  .favorite {
+    img {
+      height: 4.7vw;
+      width: 4.7vw;
+    }
+  }
+}
