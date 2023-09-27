@@ -62,10 +62,10 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
                 height={32}
                 src={
                   isFavoritesPage
-                    ? 'react-sneakers/img/liked.svg'
+                    ? 'img/liked.svg'
                     : isItemFavorite(id)
-                    ? 'react-sneakers/img/liked.svg'
-                    : 'react-sneakers/img/unliked.png'
+                    ? 'img/liked.svg'
+                    : 'img/unliked.png'
                 }
                 alt='Unliked'
               />
@@ -86,8 +86,8 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
                 onClick={onClickPlus}
                 src={
                   isItemAdded(imageUrl)
-                    ? 'react-sneakers/img/btn-checked.png'
-                    : 'react-sneakers/img/btn-plus.svg'
+                    ? 'img/btn-checked.png'
+                    : 'img/btn-plus.svg'
                 }
                 alt='Add'
               />

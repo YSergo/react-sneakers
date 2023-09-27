@@ -38,7 +38,7 @@ function Favorites({ isLoading }) {
         </div>
       ) : (
         <Info
-          image={'react-sneakers/img/empty-favorites.png'}
+          image={'img/empty-favorites.png'}
           style={{ width: '70px' }}
           title={'No favorites :('}
           description={`You haven't added anything to favorites`}
