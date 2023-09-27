@@ -92,7 +92,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <b>{numberWithSpaces(Math.round(totalPrice * 0.05))} ₽</b>
                 </li>
               </ul>
-              <button disabled={isLoading} onClick={onClickOrder} className='greenButton'>
+              <button disabled={isLoading} onClick={onClickOrder} className={styles.greenButton}>
                 Place order <img src='react-sneakers/img/arrow.svg' alt='Arrow' />
               </button>
             </div>
