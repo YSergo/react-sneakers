@@ -104,6 +104,20 @@ function App() {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   }
 
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const isMobile = windowWidth <= 767;
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <appContext.Provider
       value={{
@@ -118,6 +132,7 @@ function App() {
         setCartOpened,
         setCartItems,
         numberWithSpaces,
+        isMobile,
       }}
     >
       <div className='wrapper'>

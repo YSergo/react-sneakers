@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import styles from './Card.module.scss';
 
 function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false }) {
-  const { isItemAdded, isItemFavorite, numberWithSpaces } = React.useContext(appContext);
+  const { isItemAdded, isItemFavorite, numberWithSpaces, isMobile } = React.useContext(appContext);
 
   const onClickPlus = () => {
     onPlus({ id, parentId: id, title, price, imageUrl });
@@ -22,20 +22,37 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
   return (
     <div className={styles.card}>
       {loading ? (
-        <ContentLoader
-          speed={2}
-          width={158}
-          height={198}
-          viewBox='0 0 158 198'
-          backgroundColor='#f3f3f3'
-          foregroundColor='#ecebeb'
-        >
-          <rect x='0' y='120' rx='5' ry='5' width='158' height='15' />
-          <rect x='0' y='140' rx='5' ry='5' width='100' height='15' />
-          <rect x='0' y='171' rx='10' ry='10' width='60' height='25' />
-          <rect x='126' y='166' rx='10' ry='10' width='32' height='32' />
-          <rect x='0' y='0' rx='10' ry='10' width='158' height='110' />
-        </ContentLoader>
+        isMobile ? (
+          <ContentLoader
+            speed={2}
+            width='100%'
+            height='auto'
+            viewBox='0 0 158 210'
+            backgroundColor='#f3f3f3'
+            foregroundColor='#ecebeb'
+          >
+            <rect x='0' y='120' rx='5' ry='5' width='158' height='15' />
+            <rect x='0' y='140' rx='5' ry='5' width='100' height='15' />
+            <rect x='0' y='175' rx='10' ry='10' width='60' height='32' />
+            <rect x='118' y='168' rx='10' ry='10' width='40' height='40' />
+            <rect x='0' y='0' rx='10' ry='10' width='158' height='110' />
+          </ContentLoader>
+        ) : (
+          <ContentLoader
+            speed={2}
+            width={158}
+            height={198}
+            viewBox='0 0 158 198'
+            backgroundColor='#f3f3f3'
+            foregroundColor='#ecebeb'
+          >
+            <rect x='0' y='120' rx='5' ry='5' width='158' height='15' />
+            <rect x='0' y='140' rx='5' ry='5' width='100' height='15' />
+            <rect x='0' y='171' rx='10' ry='10' width='60' height='25' />
+            <rect x='126' y='166' rx='10' ry='10' width='32' height='32' />
+            <rect x='0' y='0' rx='10' ry='10' width='158' height='110' />
+          </ContentLoader>
+        )
       ) : (
         <>
           {onFavorite && (
@@ -54,13 +71,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
               />
             </div>
           )}
-          <img
-            className={styles.photo}
-            width={133}
-            height={112}
-            src={imageUrl}
-            alt='Sneakers'
-          />
+          <img className={styles.photo} width={133} height={112} src={imageUrl} alt='Sneakers' />
           <h5>{title}</h5>
           <div className={styles.cardBottom}>
             <div className={styles.cardBottom2}>
@@ -73,7 +84,11 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
                 height={32}
                 className={styles.plus}
                 onClick={onClickPlus}
-                src={isItemAdded(imageUrl) ? 'react-sneakers/img/btn-checked.png' : 'react-sneakers/img/btn-plus.svg'}
+                src={
+                  isItemAdded(imageUrl)
+                    ? 'react-sneakers/img/btn-checked.png'
+                    : 'react-sneakers/img/btn-plus.svg'
+                }
                 alt='Add'
               />
             )}
