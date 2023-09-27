@@ -233,7 +233,7 @@ header {
     margin: 0 auto;
   }
 
-  //header
+  //
   header {
     display: flex;
     justify-content: space-between;
@@ -246,13 +246,15 @@ header {
       align-items: center;
 
       img {
+        height: 10.2vw;
+        width: 10.2vw;
         margin-right: 8%;
       }
 
       h3 {
         font-size: 3.6vw;
       }
-      
+
       h3,
       p {
         margin: 0px;
@@ -268,18 +270,33 @@ header {
   .headerRight {
     display: flex;
 
+ /*    .cartIconPrice {
+      margin-right: 30px;
+      cursor: pointer;
+  
+      span {
+        margin-left: 10px;
+        position: relative;
+        top: -5px;
+      }
+    } */
     .cartIconPrice {
-      margin-right: 32px;
+      margin-right: 7.9vw;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       position: relative;
-      align-items: center; 
+      align-items: center;
+
+      svg {
+        height: 6.1vw;
+        width: 6.1vw;
+      }
 
       span {
-        margin-right: px;
+        margin-left: 2.7vw;
         position: absolute;
-        top: 30px;
+        top: 7.5vw;
         font-size: 3vw;
         white-space: nowrap;
         color: #797979;
@@ -290,7 +307,19 @@ header {
 
     .likeIcon {
       cursor: pointer;
-      margin-right: 30px;
+      margin-right: 7.8vw;
+
+      img {
+        height: 6.1vw;
+        width: 6.1vw;
+      }
+    }
+
+    .userIcon {
+      img {
+        height: 6.1vw;
+        width: 6.1vw;
+      }
     }
   }
   //
@@ -319,9 +348,7 @@ header {
     padding: 0px 15px;
     display: flex;
     position: relative;
-    width: calc(
-      50% - 6px
-    );
+    width: calc(50% - 6px);
 
     .clear-btn {
       right: 0;
