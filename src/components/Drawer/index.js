@@ -15,17 +15,17 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose();
       }
     };
 
     if (opened) {
-      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [opened, onClose]);
 
@@ -34,11 +34,13 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
+      console.log('isLoading is set to true');
       const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/orders', {
         items: cartItems,
       });
       setOrderId(data.id);
       setIsOrderComplete(true);
+      await delay(3000);
       setCartItems([]);
 
       for (let i = 0; i < cartItems.length; i++) {
@@ -46,10 +48,12 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
         await axios.delete('https://6403a93d80d9c5c7bab98673.mockapi.io/cart/' + item.id);
         await delay(1000);
       } //damn mockapi :(;
-    } catch {
+    } catch (error) {
       alert('Error when creating the order :C');
+      console.log(error);
     }
     setIsLoading(false);
+    console.log('isLoading is set to false');
   };
 
   return (
@@ -64,7 +68,10 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
             <div className={styles.items}>
               {items.map((obj) => (
                 <div key={obj.id} className={styles.cartItem}>
-                  <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className={styles.cartItemImg}></div>
+                  <div
+                    style={{ backgroundImage: `url(${obj.imageUrl})` }}
+                    className={styles.cartItemImg}
+                  ></div>
                   <div className={styles.textInCartItem}>
                     <p>{obj.title}</p>
                     <b>{numberWithSpaces(obj.price)} ₽</b>
@@ -107,7 +114,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 : 'Add at least one pair of sneakers to place an order.'
             }
             func={() => setCartOpened(false)}
-            style={isOrderComplete ? { width: '30%'} : { width: '40%'}}
+            style={isOrderComplete ? { width: '30%' } : { width: '40%' }}
           />
         )}
       </div>
