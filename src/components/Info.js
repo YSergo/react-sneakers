@@ -8,7 +8,7 @@ function Info({ image, title, description, func, style }) {
         <h2 className='infoTitle'>{title}</h2>
         <p>{description}</p>
         <button onClick={func} className='greenButton'>
-          <img src='img/arrow.svg' alt='Arrow' />
+          <img src='/react-sneakers/img/arrow.svg' alt='Arrow' />
           Go back
         </button>
       </div>

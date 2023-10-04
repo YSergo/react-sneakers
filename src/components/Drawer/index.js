@@ -60,7 +60,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
     <div onClick={onClose} className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div onClick={(event) => event.stopPropagation()} className={styles.drawer}>
         <h2>
-          Cart <img onClick={onClose} className={styles.removeBtn} src='img/btn-remove.svg' alt='Close' />
+          Cart <img onClick={onClose} className={styles.removeBtn} src='/react-sneakers/img/btn-remove.svg' alt='Close' />
         </h2>
 
         {items.length > 0 ? (
@@ -79,7 +79,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <img
                     onClick={() => onRemove(obj.id)}
                     className={styles.removeBtn}
-                    src='img/btn-remove.svg'
+                    src='/react-sneakers/img/btn-remove.svg'
                     alt='Remove'
                   />
                 </div>
@@ -100,13 +100,13 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 </li>
               </ul>
               <button disabled={isLoading} onClick={onClickOrder} className={styles.greenButton}>
-                Place order <img src='img/arrow.svg' alt='Arrow' />
+                Place order <img src='/react-sneakers/img/arrow.svg' alt='Arrow' />
               </button>
             </div>
           </div>
         ) : (
           <Info
-            image={isOrderComplete ? 'img/complete-order.png' : 'img/empty-cart.jpg'}
+            image={isOrderComplete ? '/react-sneakers/img/complete-order.png' : '/react-sneakers/img/empty-cart.jpg'}
             title={isOrderComplete ? 'Order placed!' : 'Cart is empty'}
             description={
               isOrderComplete
