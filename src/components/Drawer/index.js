@@ -60,7 +60,13 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
     <div onClick={onClose} className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div onClick={(event) => event.stopPropagation()} className={styles.drawer}>
         <h2>
-          Cart <img onClick={onClose} className={styles.removeBtn} src='/react-sneakers/img/btn-remove.svg' alt='Close' />
+          Cart
+          <img
+            onClick={onClose}
+            className={styles.removeBtn}
+            src='/react-sneakers/img/btn-remove.svg'
+            alt='Close'
+          />
         </h2>
 
         {items.length > 0 ? (
@@ -106,7 +112,11 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
           </div>
         ) : (
           <Info
-            image={isOrderComplete ? '/react-sneakers/img/complete-order.png' : '/react-sneakers/img/empty-cart.jpg'}
+            image={
+              isOrderComplete
+                ? '/react-sneakers/img/complete-order.png'
+                : '/react-sneakers/img/empty-cart.jpg'
+            }
             title={isOrderComplete ? 'Order placed!' : 'Cart is empty'}
             description={
               isOrderComplete
