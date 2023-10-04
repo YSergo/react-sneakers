@@ -40,8 +40,8 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
         ) : (
           <ContentLoader
             speed={2}
-            width={158}
-            height={198}
+            width={'100%'}
+            height={'auto'}
             viewBox='0 0 158 198'
             backgroundColor='#f3f3f3'
             foregroundColor='#ecebeb'
