@@ -5,13 +5,11 @@ import { appContext } from '../../App';
 import Info from '../Info';
 import styles from './Drawer.module.scss';
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 function Drawer({ onClose, items = [], onRemove, opened }) {
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { cartItems, setCartItems, setCartOpened, numberWithSpaces } = React.useContext(appContext);
+  const { cartItems, setCartItems, setCartOpened, numberWithSpaces, delay } = React.useContext(appContext);
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
@@ -34,7 +32,6 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
-      console.log('isLoading is set to true');
       const { data } = await axios.post('https://641a29baf398d7d95d51f32d.mockapi.io/orders', {
         items: cartItems,
       });
@@ -53,7 +50,6 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
       console.log(error);
     }
     setIsLoading(false);
-    console.log('isLoading is set to false');
   };
 
   return (

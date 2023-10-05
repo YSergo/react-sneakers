@@ -18,13 +18,32 @@ function App() {
   const [searchValue, setSearchValue] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(true);
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const [orders, setOrders] = React.useState([]);
+  const [ordersIsLoading, setOrdersIsLoading] = React.useState(true);
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/orders');
+        setOrders(data.map((obj) => obj.items).flat());
+        // setOrders(data.reduce((prev, obj) => [ ...prev, ...obj.items], [])); - one more option
+        await delay (2000);
+        setOrdersIsLoading(false);
+      } catch (error) {
+        alert('Error fetching orders');
+        console.error(error);
+      }
+    })();
+  }, []);
+
   React.useEffect(() => {
     async function fetchData() {
       try {
         const cartItemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/cart');
         const favoritesResponse = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/favorites');
         const itemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/items');
-
+        await delay(2000);
         setIsLoading(false);
 
         setCartItems(cartItemsResponse.data);
@@ -133,6 +152,9 @@ function App() {
         setCartItems,
         numberWithSpaces,
         isMobile,
+        delay,
+        orders, 
+        ordersIsLoading,
       }}
     >
       <div className='wrapper'>
