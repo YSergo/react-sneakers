@@ -208,7 +208,7 @@ header {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 575px) {
   body {
     padding: 3%;
   }
@@ -266,7 +266,7 @@ header {
       }
     } */
     .cartIconPrice {
-      margin-right: 7.9vw;
+      margin-right: 8.7vw;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -368,7 +368,7 @@ header {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1080px) {
+@media (min-width: 575px) and (max-width: 1080px) {
   body {
     padding: 3%;
   }

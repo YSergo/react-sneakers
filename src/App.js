@@ -105,7 +105,7 @@ function App() {
   }
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-  const isMobile = windowWidth <= 767;
+  const isMobile = windowWidth < 576;
 
   React.useEffect(() => {
     const handleResize = () => {
