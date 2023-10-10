@@ -217,8 +217,7 @@ header {
     max-width: 100%;
     margin: 0 auto;
   }
-
-  //
+  
   header {
     display: flex;
     justify-content: space-between;
@@ -255,16 +254,6 @@ header {
   .headerRight {
     display: flex;
 
-    /*    .cartIconPrice {
-      margin-right: 30px;
-      cursor: pointer;
-  
-      span {
-        margin-left: 10px;
-        position: relative;
-        top: -5px;
-      }
-    } */
     .cartIconPrice {
       margin-right: 8.7vw;
       cursor: pointer;
@@ -286,7 +275,6 @@ header {
         white-space: nowrap;
         color: #797979;
         font-weight: bold;
-        // display: none;
       }
     }
 
@@ -307,9 +295,7 @@ header {
       }
     }
   }
-  //
 
-  //name, search, content
   .content {
     padding: 5%;
 
@@ -359,7 +345,6 @@ header {
       box-sizing: border-box;
     }
   }
-  //
 
   .sneakers {
     display: flex;

@@ -44,7 +44,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
         const item = cartItems[i];
         await axios.delete('https://6403a93d80d9c5c7bab98673.mockapi.io/cart/' + item.id);
         await delay(1000);
-      } //damn mockapi :(;
+      }
     } catch (error) {
       alert('Error when creating the order :C');
       console.log(error);
