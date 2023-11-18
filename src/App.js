@@ -22,17 +22,17 @@ function App() {
 
   const [orders, setOrders] = React.useState([]);
   const [ordersIsLoading, setOrdersIsLoading] = React.useState(true);
-  
+
   React.useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/orders');
         setOrders(data.map((obj) => obj.items).flat());
         // setOrders(data.reduce((prev, obj) => [ ...prev, ...obj.items], [])); - one more option
-        await delay (2000);
+        await delay(2000);
         setOrdersIsLoading(false);
       } catch (error) {
-        alert('Error fetching data. Perhaps mockapi problem or try to slow down ;(');
+        alert('Error fetching data. Perhaps server problem. Try to slow down :(');
         console.error(error);
       }
     })();
@@ -51,7 +51,7 @@ function App() {
         setFavorites(favoritesResponse.data);
         setItems(itemsResponse.data);
       } catch (error) {
-        alert('Error fetching data. Perhaps mockapi problem or try to slow down ;(');
+        alert('Error fetching data. Perhaps server problem. Try to slow down :(');
         console.error(error);
       }
     }
@@ -154,7 +154,7 @@ function App() {
         numberWithSpaces,
         isMobile,
         delay,
-        orders, 
+        orders,
         ordersIsLoading,
       }}
     >
