@@ -29,7 +29,7 @@ function App() {
         const { data } = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/orders');
         setOrders(data.map((obj) => obj.items).flat());
         // setOrders(data.reduce((prev, obj) => [ ...prev, ...obj.items], [])); - one more option
-        await delay(2000);
+        await delay(1500);
         setOrdersIsLoading(false);
       } catch (error) {
         alert('Error fetching data. Perhaps server problem. Try to slow down :(');
@@ -44,7 +44,7 @@ function App() {
         const cartItemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/cart');
         const favoritesResponse = await axios.get('https://641a29baf398d7d95d51f32d.mockapi.io/favorites');
         const itemsResponse = await axios.get('https://6403a93d80d9c5c7bab98673.mockapi.io/items');
-        await delay(2000);
+        await delay(1500);
         setIsLoading(false);
 
         setCartItems(cartItemsResponse.data);
@@ -80,7 +80,7 @@ function App() {
         );
       }
     } catch (error) {
-      alert('Error while adding items to the cart. Perhaps mockapi problem. Try slow down');
+      alert('Error while adding items to the cart. Perhaps server problem. Try to slow down');
       console.error(error);
     }
   };
@@ -90,7 +90,7 @@ function App() {
       axios.delete(`https://6403a93d80d9c5c7bab98673.mockapi.io/cart/${id}`);
       setCartItems((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
-      alert('Error while removing from the cart. Perhaps mockapi problem. Try slow down');
+      alert('Error while removing from the cart. Perhaps server problem. Try to slow down');
       console.error(error);
     }
   };
@@ -107,7 +107,7 @@ function App() {
         setFavorites((prev) => [...prev.filter((item) => item.id !== obj.id), data]);
       }
     } catch (error) {
-      alert('Failed to add to favorites');
+      alert('Failed to add to favorites. Perhaps server problem. Try to slow down');
       console.error(error);
     }
   };
