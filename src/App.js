@@ -22,6 +22,7 @@ function App() {
 
   const [orders, setOrders] = React.useState([]);
   const [ordersIsLoading, setOrdersIsLoading] = React.useState(true);
+  
   React.useEffect(() => {
     (async () => {
       try {
@@ -31,7 +32,7 @@ function App() {
         await delay (2000);
         setOrdersIsLoading(false);
       } catch (error) {
-        alert('Error fetching orders');
+        alert('Error fetching data. Perhaps mockapi problem or try to slow down ;(');
         console.error(error);
       }
     })();
@@ -50,7 +51,7 @@ function App() {
         setFavorites(favoritesResponse.data);
         setItems(itemsResponse.data);
       } catch (error) {
-        alert('Error fetching data. Perhaps mockapi problem. Try slow down ;(');
+        alert('Error fetching data. Perhaps mockapi problem or try to slow down ;(');
         console.error(error);
       }
     }
