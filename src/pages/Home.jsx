@@ -1,6 +1,17 @@
+import React, { useState } from 'react';
+
 import Card from '../components/Card';
+import Modal from '../components/Modal/Modal'; 
 
 function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart, isLoading }) {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
   const renderItems = () => {
     return (
       isLoading
@@ -13,6 +24,7 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
         onFavorite={(obj) => onAddToFavorite(obj)}
         loading={isLoading}
         {...item}
+        onClick={() => handleCardClick(item)}
       />
     ));
   };
@@ -40,6 +52,7 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
         </div>
       </div>
       <div className='sneakers'>{renderItems()}</div>
+      {isModalOpen && <Modal item={selectedItem} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import styles from './Card.module.scss';
 
-function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false }) {
+function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false, onClick }) {
   const { isItemAdded, isItemFavorite, numberWithSpaces, isMobile } = React.useContext(appContext);
 
   const onClickPlus = () => {
@@ -20,7 +20,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false 
   const isFavoritesPage = location.pathname === '/favorites';
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onClick}>
       {loading ? (
         isMobile ? (
           <ContentLoader
