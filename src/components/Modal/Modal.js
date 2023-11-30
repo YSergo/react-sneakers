@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './Modal.module.scss'; // Импортируйте стили для модального окна
+import { appContext } from '../../App';
 
 function Modal({ item, onClose, onPlus, onFavorite }) {
+  const { isItemAdded } = React.useContext(appContext);
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
@@ -24,7 +26,17 @@ function Modal({ item, onClose, onPlus, onFavorite }) {
             />
           </div>
           <div onClick={() => onPlus(item)}>
-            <img className={styles.plus} src='/react-sneakers/img/btn-plus.svg' alt='Add to Cart' />
+            <img
+              width={32}
+              height={32}
+              className={styles.plus}
+              src={
+                isItemAdded(item.imageUrl)
+                  ? '/react-sneakers/img/btn-checked.png'
+                  : '/react-sneakers/img/btn-plus.svg'
+              }
+              alt='Add to Cart'
+            />
           </div>
         </div>
       </div>

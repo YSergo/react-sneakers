@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Card from '../components/Card';
-import Modal from '../components/Modal/Modal'; 
+import Modal from '../components/Modal/Modal';
 
 function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart, isLoading }) {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -52,7 +52,14 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
         </div>
       </div>
       <div className='sneakers'>{renderItems()}</div>
-      {isModalOpen && <Modal item={selectedItem} onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <Modal
+          item={selectedItem}
+          onClose={() => setIsModalOpen(false)}
+          onPlus={(obj) => onAddToCart(obj)}
+          onFavorite={(obj) => onAddToFavorite(obj)}
+        />
+      )}
     </div>
   );
 }
