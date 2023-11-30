@@ -3,7 +3,7 @@ import styles from './Modal.module.scss';
 import { appContext } from '../../App';
 
 function Modal({ item, onClose, onPlus, onFavorite }) {
-  const { isItemAdded, isItemFavorite } = React.useContext(appContext);
+  const { isItemAdded, isItemFavorite, numberWithSpaces } = React.useContext(appContext);
   const onClickPlus = () => {
     onPlus({
       id: item.id,
@@ -27,6 +27,10 @@ function Modal({ item, onClose, onPlus, onFavorite }) {
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
+        <div className={styles.price}>
+          <span>Price:</span>
+          <b>{numberWithSpaces(item.price)} ₽</b>
+        </div>
         <img
           onClick={onClose}
           className={styles.removeBtn}
@@ -34,7 +38,7 @@ function Modal({ item, onClose, onPlus, onFavorite }) {
           alt='Close'
         />
         <img src={item.imageUrl} alt={item.title} className={styles.modalImage} />
-
+        <h5>{item.title}</h5>
         <div className={styles.buttons}>
           <div onClick={() => onClickFavorite(item)}>
             <img

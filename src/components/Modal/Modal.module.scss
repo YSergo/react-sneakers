@@ -18,14 +18,14 @@
 }
 
 .modalImage {
-  width: 100%;
+  width: 400px;
   height: auto;
 }
 
 .removeBtn {
   position: absolute;
   top: 20px;
-  right: 20px; 
+  right: 20px;
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
@@ -44,6 +44,31 @@
 }
 
 .buttons {
+  margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
+}
+
+h5 {
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    font-size: 13px;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  b {
+    font-size: 14px;
+  }
 }
