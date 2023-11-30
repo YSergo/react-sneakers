@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Modal.module.scss';
 import { appContext } from '../../App';
 
-function Modal({ item, onClose, onPlus, onFavorite }) {
+function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
   const { isItemAdded, isItemFavorite, numberWithSpaces } = React.useContext(appContext);
   const onClickPlus = () => {
     onPlus({
@@ -23,6 +23,22 @@ function Modal({ item, onClose, onPlus, onFavorite }) {
       imageUrl: item.imageUrl,
     });
   };
+
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen, onClose]);
 
   return (
     <div className={styles.modalBackdrop}>

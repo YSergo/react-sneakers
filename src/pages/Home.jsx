@@ -58,6 +58,7 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
           onClose={() => setIsModalOpen(false)}
           onPlus={(obj) => onAddToCart(obj)}
           onFavorite={(obj) => onAddToFavorite(obj)}
+          isModalOpen={isModalOpen}
         />
       )}
     </div>
