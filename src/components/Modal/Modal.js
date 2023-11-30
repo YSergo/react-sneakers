@@ -5,18 +5,28 @@ function Modal({ item, onClose, onPlus, onFavorite }) {
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
+        <img
+          onClick={onClose}
+          className={styles.removeBtn}
+          src='/react-sneakers/img/btn-remove.svg'
+          alt='Close'
+        />
         <img src={item.imageUrl} alt={item.title} className={styles.modalImage} />
-        <div className={styles.modalActions}>
-          <button onClick={() => onFavorite(item)}>
-            <img src='/react-sneakers/img/liked.svg' alt='Favorite' />
-          </button>
-          <button onClick={() => onPlus(item)}>
-            <img src='/react-sneakers/img/btn-checked.png' alt='Add to Cart' />
-          </button>
+
+        <div className={styles.buttons}>
+          <div onClick={() => onFavorite(item)}>
+            <img
+              width={32}
+              height={32}
+              className={styles.favorite}
+              src='/react-sneakers/img/unliked.png'
+              alt='Favorite'
+            />
+          </div>
+          <div onClick={() => onPlus(item)}>
+            <img className={styles.plus} src='/react-sneakers/img/btn-plus.svg' alt='Add to Cart' />
+          </div>
         </div>
-        <button onClick={onClose} className={styles.closeButton}>
-          &#10005; {/* Крестик для закрытия */}
-        </button>
       </div>
     </div>
   );
