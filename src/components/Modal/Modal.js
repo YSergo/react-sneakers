@@ -1,9 +1,29 @@
 import React from 'react';
-import styles from './Modal.module.scss'; // Импортируйте стили для модального окна
+import styles from './Modal.module.scss';
 import { appContext } from '../../App';
 
 function Modal({ item, onClose, onPlus, onFavorite }) {
-  const { isItemAdded } = React.useContext(appContext);
+  const { isItemAdded, isItemFavorite } = React.useContext(appContext);
+  const onClickPlus = () => {
+    onPlus({
+      id: item.id,
+      parentId: item.id,
+      title: item.title,
+      price: item.price,
+      imageUrl: item.imageUrl,
+    });
+  };
+
+  const onClickFavorite = () => {
+    onFavorite({
+      id: item.id,
+      parentId: item.id,
+      title: item.title,
+      price: item.price,
+      imageUrl: item.imageUrl,
+    });
+  };
+
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent}>
@@ -16,16 +36,18 @@ function Modal({ item, onClose, onPlus, onFavorite }) {
         <img src={item.imageUrl} alt={item.title} className={styles.modalImage} />
 
         <div className={styles.buttons}>
-          <div onClick={() => onFavorite(item)}>
+          <div onClick={() => onClickFavorite(item)}>
             <img
               width={32}
               height={32}
               className={styles.favorite}
-              src='/react-sneakers/img/unliked.png'
+              src={
+                isItemFavorite(item.id) ? '/react-sneakers/img/liked.svg' : '/react-sneakers/img/unliked.png'
+              }
               alt='Favorite'
             />
           </div>
-          <div onClick={() => onPlus(item)}>
+          <div onClick={() => onClickPlus(item)}>
             <img
               width={32}
               height={32}

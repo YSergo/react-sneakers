@@ -20,7 +20,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
   const isFavoritesPage = location.pathname === '/favorites';
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div className={styles.card}>
       {loading ? (
         isMobile ? (
           <ContentLoader
@@ -71,7 +71,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
               />
             </div>
           )}
-          <img className={styles.photo} width={133} height={112} src={imageUrl} alt='Sneakers' />
+          <img className={styles.photo} width={133} height={112} src={imageUrl} alt='Sneakers' onClick={onClick} />
           <h5>{title}</h5>
           <div className={styles.cardBottom}>
             <div className={styles.cardBottom2}>
