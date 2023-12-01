@@ -50,8 +50,8 @@ function Header(props) {
           </Link>
         </li>
         <Link to='/orders'>
-          <li className='userIcon'>
-            <img width={24} height={24} src='/react-sneakers/img/user.svg' alt='Orders' />
+          <li className='ordersIcon'>
+            <img width={23} height={23} src='/react-sneakers/img/notebook-of-spring-with-lines-page-svgrepo-com.svg' alt='Orders' />
           </li>
         </Link>
       </ul>
