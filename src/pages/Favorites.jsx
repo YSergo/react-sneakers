@@ -23,7 +23,9 @@ function Favorites({ isLoading }) {
 
   return (
     <div className='content'>
-      <div className='contentTitleSearch'><h1>Favorites</h1></div>
+      <div className='contentTitleSearch'>
+        <h1>Favorites</h1>
+      </div>
       {isLoading ? (
         <div className='sneakers'>
           {[...Array(8)].map((item, index) => (
@@ -33,7 +35,14 @@ function Favorites({ isLoading }) {
       ) : favorites.length > 0 ? (
         <div className='sneakers'>
           {favorites.map((item, index) => (
-            <Card key={index} loading={false} onFavorite={onDeleteOnFavoritePage} onPlus={onAddToCart} {...item} />
+            <Card
+              key={index}
+              loading={false}
+              onFavorite={onDeleteOnFavoritePage}
+              onPlus={onAddToCart}
+              {...item}
+              disableCardHover
+            />
           ))}
         </div>
       ) : (

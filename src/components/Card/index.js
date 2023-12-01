@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import styles from './Card.module.scss';
 
-function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false, onClick }) {
+function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false, onClick, disableCardHover }) {
   const { isItemAdded, isItemFavorite, numberWithSpaces, isMobile } = React.useContext(appContext);
 
   const onClickPlus = () => {
@@ -20,7 +20,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
   const isFavoritesPage = location.pathname === '/favorites';
 
   return (
-    <div className={styles.card}>
+    <div className={disableCardHover ? `${styles.card} ${styles.noHoverEffect}` : styles.card}>
       {loading ? (
         isMobile ? (
           <ContentLoader

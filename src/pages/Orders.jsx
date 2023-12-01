@@ -21,7 +21,7 @@ function Orders() {
       ) : orders.length > 0 ? (
         <div className='sneakers'>
           {orders.map((item, index) => (
-            <Card key={index} loading={false} {...item} />
+            <Card key={index} loading={false} {...item} disableCardHover />
           ))}
         </div>
       ) : (

@@ -56,6 +56,11 @@
   }
 }
 
+.noHoverEffect:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 @media (max-width: 575px) {
   .card {
     border: 1px solid #f3f3f3;
