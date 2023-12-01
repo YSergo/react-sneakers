@@ -40,6 +40,17 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
     };
   }, [isModalOpen, onClose]);
 
+   React.useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isModalOpen]);
+
   return (
     <div className={styles.modalBackdrop} onClick={onClose}>
       <div className={`${styles.modalContent} ${styles.animate}`} onClick={(event) => event.stopPropagation()}>
