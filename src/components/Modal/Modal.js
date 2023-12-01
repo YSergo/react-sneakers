@@ -27,7 +27,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
   React.useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        onClose();
+        handleClose();
       }
     };
 
@@ -51,10 +51,20 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
     };
   }, [isModalOpen]);
 
+  const [isClosing, setIsClosing] = React.useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+    }, 200);
+  };
+
   return (
-    <div className={styles.modalBackdrop} onClick={onClose}>
+    <div className={`${styles.modalBackdrop} ${isClosing ? styles.modalClosingBackground : ''} ${styles.modalOpeningBack}`} onClick={handleClose}>
       <div
-        className={`${styles.modalContent} ${styles.animate}`}
+       className={`${styles.modalContent} ${isClosing ? styles.modalClosing : ''} ${styles.animate}`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles.price}>
@@ -62,7 +72,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
           <b>{numberWithSpaces(item.price)} ₽</b>
         </div>
         <img
-          onClick={onClose}
+          onClick={handleClose}
           className={styles.removeBtn}
           src='/react-sneakers/img/btn-remove.svg'
           alt='Close'
