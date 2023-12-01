@@ -20,7 +20,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
   const isFavoritesPage = location.pathname === '/favorites';
 
   return (
-    <div className={disableCardHover ? `${styles.card} ${styles.noHoverEffect}` : styles.card}>
+    <div className={disableCardHover || isMobile  ? `${styles.card} ${styles.noHoverEffect}` : styles.card}>
       {loading ? (
         isMobile ? (
           <ContentLoader

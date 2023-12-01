@@ -132,3 +132,25 @@ h5 {
 .modalClosingBackground {
   animation: fade 0.2s ease-in-out;
 }
+
+@media (max-width: 575px) {
+  .plusBtn {
+    height: 12vw;
+    width: 12vw;
+  }
+  .favoriteBtn {
+    height: 12vw;
+    width: 12vw;
+  }
+}
+
+@media (min-width: 575px) and (max-width: 1080px) {
+  .plusBtn {
+    height: 5vw;
+    width: 5vw;
+  }
+  .favoriteBtn {
+    height: 5vw;
+    width: 5vw;
+  }
+}

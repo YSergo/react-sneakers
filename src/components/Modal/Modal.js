@@ -84,7 +84,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
             <img
               width={32}
               height={32}
-              className={styles.favorite}
+              className={styles.favoriteBtn}
               src={
                 isItemFavorite(item.id) ? '/react-sneakers/img/liked.svg' : '/react-sneakers/img/unliked.png'
               }
@@ -95,7 +95,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
             <img
               width={32}
               height={32}
-              className={styles.plus}
+              className={styles.plusBtn}
               src={
                 isItemAdded(item.imageUrl)
                   ? '/react-sneakers/img/btn-checked.png'

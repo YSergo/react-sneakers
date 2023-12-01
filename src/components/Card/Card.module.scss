@@ -125,6 +125,11 @@
       margin-bottom: 5%;
     }
   }
+
+  .noHoverEffect:hover {
+    box-shadow: none;
+    transform: none;
+  }
 }
 
 @media (min-width: 575px) and (max-width: 1080px) {
@@ -133,6 +138,11 @@
       33% - 6px
     ); /* если gap равен 12px, то каждая карточка будет 
     уменьшена на половину этого значения, т.е. 6px */
+
+    &:hover {
+      box-shadow: none;
+      transform: none;
+    }
 
     span {
       font-size: 2vw;
