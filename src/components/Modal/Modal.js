@@ -42,7 +42,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
 
   return (
     <div className={styles.modalBackdrop} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(event) => event.stopPropagation()}>
+      <div className={`${styles.modalContent} ${styles.animate}`} onClick={(event) => event.stopPropagation()}>
         <div className={styles.price}>
           <span>Price:</span>
           <b>{numberWithSpaces(item.price)} ₽</b>
