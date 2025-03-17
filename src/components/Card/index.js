@@ -70,7 +70,7 @@ function Card({
         <>
           {onFavorite && (
             <div
-              className={`${styles.favorite} ${isItemFavorite(id) ? styles.favoriteDisabled : ''}`}
+              className={`${styles.favorite} ${isFavoritesPage ? styles.favoriteDisabled : isItemFavorite(id) ? styles.favoriteDisabled : ''}`}
               onClick={(e) => {
                 e.stopPropagation();
                 onClickFavorite();
