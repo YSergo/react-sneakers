@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import Card from '../components/Card';
 import Modal from '../components/Modal/Modal';
@@ -6,6 +7,7 @@ import Modal from '../components/Modal/Modal';
 function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart, isLoading }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [parent] = useAutoAnimate();
 
   const handleCardClick = (item) => {
     setSelectedItem(item);
@@ -19,7 +21,7 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
         : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
     ).map((item, index) => (
       <Card
-        key={index}
+        key={item?.id || index}
         onPlus={(obj) => onAddToCart(obj)}
         onFavorite={(obj) => onAddToFavorite(obj)}
         loading={isLoading}
@@ -51,7 +53,7 @@ function Home({ items, searchValue, setSearchValue, onAddToFavorite, onAddToCart
           />
         </div>
       </div>
-      <div className='sneakers'>{renderItems()}</div>
+      <div ref={parent} className='sneakers'>{renderItems()}</div>
       {isModalOpen && (
         <Modal
           item={selectedItem}

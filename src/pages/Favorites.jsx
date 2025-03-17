@@ -3,11 +3,13 @@ import Card from '../components/Card';
 import axios from 'axios';
 import { appContext } from '../App';
 import { useNavigate } from 'react-router-dom';
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import Info from '../components/Info';
 
 function Favorites({ isLoading }) {
   const { favorites, setFavorites, onAddToCart } = react.useContext(appContext);
+  const [parent] = useAutoAnimate();
 
   const navigate = useNavigate();
 
@@ -33,10 +35,10 @@ function Favorites({ isLoading }) {
           ))}
         </div>
       ) : favorites.length > 0 ? (
-        <div className='sneakers'>
+        <div ref={parent} className='sneakers'>
           {favorites.map((item, index) => (
             <Card
-              key={index}
+              key={item?.id || index}
               loading={false}
               onFavorite={onDeleteOnFavoritePage}
               onPlus={onAddToCart}

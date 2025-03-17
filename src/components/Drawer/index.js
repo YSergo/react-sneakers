@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { appContext } from '../../App';
 
 import Info from '../Info';
@@ -10,6 +11,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const { cartItems, setCartItems, setCartOpened, numberWithSpaces, delay } = React.useContext(appContext);
+  const [parent] = useAutoAnimate();
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
@@ -67,7 +69,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 
         {items.length > 0 ? (
           <div className={styles.itemsParent}>
-            <div className={styles.items}>
+            <div ref={parent} className={styles.items}>
               {items.map((obj) => (
                 <div key={obj.id} className={styles.cartItem}>
                   <div
