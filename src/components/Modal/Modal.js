@@ -84,7 +84,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
             <img
               width={32}
               height={32}
-              className={styles.favoriteBtn}
+              className={`${styles.favoriteBtn} ${isItemFavorite(item.id) ? styles.favoriteBtnDisabled : ''}`}
               src={
                 isItemFavorite(item.id) ? '/react-sneakers/img/liked.svg' : '/react-sneakers/img/unliked.png'
               }
@@ -95,7 +95,7 @@ function Modal({ item, onClose, onPlus, onFavorite, isModalOpen }) {
             <img
               width={32}
               height={32}
-              className={styles.plusBtn}
+              className={`${styles.plusBtn} ${isItemAdded(item.imageUrl) ? styles.plusDisabled : ''}`}
               src={
                 isItemAdded(item.imageUrl)
                   ? '/react-sneakers/img/btn-checked.png'

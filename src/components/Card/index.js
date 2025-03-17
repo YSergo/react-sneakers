@@ -5,7 +5,17 @@ import { useLocation } from 'react-router-dom';
 
 import styles from './Card.module.scss';
 
-function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false, onClick, disableCardHover }) {
+function Card({
+  id,
+  title,
+  price,
+  imageUrl,
+  onFavorite,
+  onPlus,
+  loading = false,
+  onClick,
+  disableCardHover,
+}) {
   const { isItemAdded, isItemFavorite, numberWithSpaces, isMobile } = React.useContext(appContext);
 
   const onClickPlus = () => {
@@ -20,7 +30,10 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
   const isFavoritesPage = location.pathname === '/favorites';
 
   return (
-    <div className={disableCardHover || isMobile  ? `${styles.card} ${styles.noHoverEffect}` : styles.card}>
+    <div
+      className={disableCardHover || isMobile ? `${styles.card} ${styles.noHoverEffect}` : styles.card}
+      onClick={onClick}
+    >
       {loading ? (
         isMobile ? (
           <ContentLoader
@@ -56,7 +69,13 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
       ) : (
         <>
           {onFavorite && (
-            <div className={styles.favorite} onClick={onClickFavorite}>
+            <div
+              className={`${styles.favorite} ${isItemFavorite(id) ? styles.favoriteDisabled : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onClickFavorite();
+              }}
+            >
               <img
                 width={32}
                 height={32}
@@ -71,7 +90,7 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
               />
             </div>
           )}
-          <img className={styles.photo} width={133} height={112} src={imageUrl} alt='Sneakers' onClick={onClick} />
+          <img className={styles.photo} width={133} height={112} src={imageUrl} alt='Sneakers' />
           <h5>{title}</h5>
           <div className={styles.cardBottom}>
             <div className={styles.cardBottom2}>
@@ -82,8 +101,11 @@ function Card({ id, title, price, imageUrl, onFavorite, onPlus, loading = false,
               <img
                 width={32}
                 height={32}
-                className={styles.plus}
-                onClick={onClickPlus}
+                className={`${styles.plus} ${isItemAdded(imageUrl) ? styles.plusDisabled : ''}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClickPlus();
+                }}
                 src={
                   isItemAdded(imageUrl)
                     ? '/react-sneakers/img/btn-checked.png'
